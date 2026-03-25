@@ -822,115 +822,10 @@
       .mode-btn { min-height: 64px; padding: 12px 14px; }
       .mode-icon { width: 34px; height: 34px; font-size: 16px; }
     }
-  
-    .auth-shell {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-    .auth-card {
-      width: min(460px, 100%);
-      padding: 28px;
-      border-radius: 28px;
-      background: rgba(14, 16, 30, 0.78);
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: 0 24px 70px rgba(0,0,0,0.42);
-      backdrop-filter: blur(22px);
-      text-align: center;
-    }
-    .logo-mark {
-      width: 92px;
-      height: 92px;
-      border-radius: 999px;
-      margin: 0 auto 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-      font-weight: 800;
-      color: var(--accent-2);
-      background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.18), transparent 32%), linear-gradient(135deg, rgba(255,122,198,0.28), rgba(124,58,237,0.38));
-      border: 1px solid rgba(255,255,255,0.15);
-      box-shadow: 0 0 28px rgba(124,58,237,0.28);
-    }
-    .auth-card h1 {
-      margin: 0 0 8px;
-      font-size: 30px;
-      font-weight: 700;
-      color: var(--text);
-    }
-    .auth-subtitle {
-      margin: 0 0 18px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-    .auth-config-note {
-      margin-bottom: 18px;
-      padding: 12px 14px;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.55;
-      text-align: left;
-    }
-    .auth-config-note code {
-      color: var(--accent-2);
-      font-family: inherit;
-      font-weight: 700;
-    }
-    .auth-fields {
-      display: grid;
-      gap: 12px;
-      margin-bottom: 14px;
-      text-align: left;
-    }
-    .auth-actions {
-      justify-content: center;
-      margin-bottom: 12px;
-    }
-    @media (max-width: 640px) {
-      .auth-card { padding: 22px; }
-      .auth-card h1 { font-size: 26px; }
-      .logo-mark { width: 82px; height: 82px; font-size: 24px; }
-    }
   </style>
 </head>
 <body>
-  <div id="authScreen" class="auth-shell">
-    <div class="auth-card">
-      <div class="logo-mark" id="logoMark">DA</div>
-      <h1>David Angel Studio</h1>
-      <p class="auth-subtitle">Acceso privado a tu Artbook Studio</p>
-
-      <div class="auth-config-note">
-        Rellena primero <code>SUPABASE_URL</code> y <code>SUPABASE_PUBLISHABLE_KEY</code> en el script para activar el login real.
-      </div>
-
-      <div class="auth-fields">
-        <div class="field full">
-          <label>Email</label>
-          <input id="authEmail" type="email" placeholder="tu@email.com" autocomplete="email" />
-        </div>
-        <div class="field full">
-          <label>Contraseña</label>
-          <input id="authPassword" type="password" placeholder="••••••••" autocomplete="current-password" />
-        </div>
-      </div>
-
-      <div class="actions auth-actions">
-        <button class="btn primary" id="loginBtn" type="button">Entrar</button>
-        <button class="btn ghost" id="signupBtn" type="button">Crear cuenta</button>
-      </div>
-
-      <div class="status-box hidden" id="authStatus"></div>
-    </div>
-  </div>
-
-  <div class="app hidden" id="protectedApp">
+  <div class="app">
     <aside class="sidebar">
       <div class="brand">
         <h1>Artbook Studio</h1>
@@ -943,7 +838,6 @@
       </div>
 
       <div class="sidebar-actions">
-        <button class="auto-cover-btn" id="logoutBtn" type="button">Cerrar sesión</button>
         <button class="add-book-btn" id="addBookBtn" type="button">＋ Agregar nuevo artbook</button>
         <button class="auto-cover-btn" id="autoFillBtn" type="button">🪄 Rellenar covers automáticamente</button>
       </div>
@@ -1187,7 +1081,6 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     const books = [
       {id:1,publisher:"SQUARE ENIX",title:"A Realm Reborn: The Art of Eorzea",color:"#c8a96e",cover:"",initials:"SE",tags:["character","environment","keyart","semi-realistic","fantasy"]},
@@ -1328,20 +1221,6 @@
       if (!book.cover && persistedCovers[book.id]) book.cover = persistedCovers[book.id];
     });
 
-    const SUPABASE_URL = "TU_SUPABASE_URL";
-    const SUPABASE_PUBLISHABLE_KEY = "TU_SUPABASE_PUBLISHABLE_KEY";
-    const hasSupabaseConfig = !SUPABASE_URL.includes("TU_") && !SUPABASE_PUBLISHABLE_KEY.includes("TU_");
-    const supabaseClient = hasSupabaseConfig ? window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY) : null;
-
-    const authScreen = document.getElementById("authScreen");
-    const protectedApp = document.getElementById("protectedApp");
-    const authEmail = document.getElementById("authEmail");
-    const authPassword = document.getElementById("authPassword");
-    const authStatus = document.getElementById("authStatus");
-    const loginBtn = document.getElementById("loginBtn");
-    const signupBtn = document.getElementById("signupBtn");
-    const logoutBtn = document.getElementById("logoutBtn");
-
     const libraryEl = document.getElementById("library");
     const searchInput = document.getElementById("searchInput");
     const filterType = document.getElementById("filterType");
@@ -1387,105 +1266,6 @@
       if (book.tags.includes("realistic")) return "render";
       return "silueta";
     }
-    function setAuthStatus(message, isError = false) {
-      authStatus.textContent = message;
-      authStatus.classList.remove("hidden");
-      authStatus.style.borderColor = isError ? "rgba(255,107,138,0.35)" : "rgba(255,255,255,0.1)";
-      authStatus.style.color = isError ? "#ffd5dd" : "var(--muted)";
-    }
-
-    function clearAuthStatus() {
-      authStatus.classList.add("hidden");
-      authStatus.textContent = "";
-    }
-
-    function showApp() {
-      authScreen.classList.add("hidden");
-      protectedApp.classList.remove("hidden");
-    }
-
-    function showLogin() {
-      protectedApp.classList.add("hidden");
-      authScreen.classList.remove("hidden");
-    }
-
-    async function restoreSession() {
-      if (!supabaseClient) {
-        showLogin();
-        setAuthStatus("Configura Supabase para activar el acceso real.", true);
-        return;
-      }
-      const { data, error } = await supabaseClient.auth.getSession();
-      if (error) {
-        showLogin();
-        setAuthStatus(error.message, true);
-        return;
-      }
-      if (data.session) {
-        showApp();
-      } else {
-        showLogin();
-      }
-    }
-
-    async function handleLogin() {
-      if (!supabaseClient) {
-        setAuthStatus("Falta configurar Supabase.", true);
-        return;
-      }
-      clearAuthStatus();
-      const email = authEmail.value.trim();
-      const password = authPassword.value;
-      if (!email || !password) {
-        setAuthStatus("Escribe email y contraseña.", true);
-        return;
-      }
-      loginBtn.disabled = true;
-      try {
-        const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
-        if (error) {
-          setAuthStatus(error.message, true);
-          return;
-        }
-        showApp();
-      } finally {
-        loginBtn.disabled = false;
-      }
-    }
-
-    async function handleSignup() {
-      if (!supabaseClient) {
-        setAuthStatus("Falta configurar Supabase.", true);
-        return;
-      }
-      clearAuthStatus();
-      const email = authEmail.value.trim();
-      const password = authPassword.value;
-      if (!email || !password) {
-        setAuthStatus("Escribe email y contraseña.", true);
-        return;
-      }
-      signupBtn.disabled = true;
-      try {
-        const { error } = await supabaseClient.auth.signUp({ email, password });
-        if (error) {
-          setAuthStatus(error.message, true);
-          return;
-        }
-        setAuthStatus("Cuenta creada. Revisa tu email si tienes confirmación activada.");
-      } finally {
-        signupBtn.disabled = false;
-      }
-    }
-
-    async function handleLogout() {
-      if (!supabaseClient) return;
-      await supabaseClient.auth.signOut();
-      showLogin();
-      clearAuthStatus();
-      authPassword.value = "";
-    }
-
     function showStatus(message) {
       coverStatus.textContent = message;
       coverStatus.classList.remove("hidden");
@@ -2027,26 +1807,7 @@
       console.assert(autoFillCovers.constructor.name === "AsyncFunction", "autoFillCovers should be async");
       console.assert(Array.isArray(books) && books.length > 0, "books should be a non-empty array");
       console.assert(books[books.length - 1].id === 79, "last seeded book id should be 79");
-      console.assert(typeof handleLogin === "function", "handleLogin should exist");
-      console.assert(typeof handleSignup === "function", "handleSignup should exist");
     }
-
-    if (supabaseClient) {
-      supabaseClient.auth.onAuthStateChange((event, session) => {
-        if (session) {
-          showApp();
-        } else if (event === "SIGNED_OUT") {
-          showLogin();
-        }
-      });
-    }
-
-    loginBtn.addEventListener("click", handleLogin);
-    signupBtn.addEventListener("click", handleSignup);
-    logoutBtn.addEventListener("click", handleLogout);
-    authPassword.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") handleLogin();
-    });
 
     initGoals();
     initBookTags();
@@ -2055,7 +1816,6 @@
     renderSelectedBook();
     renderSaved();
     runTests();
-    restoreSession();
 
     window.copyPrompt = copyPrompt;
     window.saveCurrentBrief = saveCurrentBrief;

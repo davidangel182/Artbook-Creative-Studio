@@ -1,0 +1,286 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artbook Training Studio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>Artbook Studio</h1>
+        <p>Creative Reference System</p>
+      </div>
+
+      <div class="search">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+        <input id="searchInput" type="text" placeholder="Search books, publishers, or tags..." />
+      </div>
+
+      <div class="sidebar-actions">
+        <button class="add-book-btn" id="addBookBtn" type="button">+ Add New Artbook</button>
+        <button class="auto-cover-btn" id="autoFillBtn" type="button">Auto-fill Covers</button>
+      </div>
+
+      <div class="filters">
+        <h3>Quick Filter</h3>
+        <select id="filterType">
+          <option value="">Piece Type</option>
+          <option value="character">character</option>
+          <option value="environment">environment</option>
+          <option value="props">props</option>
+          <option value="ui">ui</option>
+          <option value="creature">creature</option>
+          <option value="keyart">keyart</option>
+        </select>
+        <select id="filterStyle">
+          <option value="">Style</option>
+          <option value="stylized">stylized</option>
+          <option value="realistic">realistic</option>
+          <option value="semi-realistic">semi-realistic</option>
+          <option value="cartoon">cartoon</option>
+          <option value="anime">anime</option>
+        </select>
+        <select id="filterWorld">
+          <option value="">World</option>
+          <option value="fantasy">fantasy</option>
+          <option value="dark fantasy">dark fantasy</option>
+          <option value="sci-fi">sci-fi</option>
+          <option value="modern">modern</option>
+          <option value="historical">historical</option>
+          <option value="horror">horror</option>
+          <option value="superhero">superhero</option>
+        </select>
+        <button class="btn ghost filter-reset-btn" id="clearFiltersBtn" type="button">Clear Filters</button>
+      </div>
+
+      <div class="status-box hidden" id="coverStatus"></div>
+      <div class="library" id="library"></div>
+    </aside>
+
+    <main class="main">
+      <header class="header">
+        <div class="header-main">
+          <div class="header-copy">
+            <div class="eyebrow" id="headerEyebrow">Select an artbook</div>
+            <h2 id="headerTitle">Artbook Creative Studio</h2>
+            <div class="desc" id="headerDesc">Your visual reference system and idea generator. Choose a book or use the training roulette to receive a challenge with a book, a plausible page, and a focused improvement goal.</div>
+          </div>
+          <div class="header-tools">
+            <div class="mode-row">
+              <button class="mode-btn active" id="manualModeBtn" type="button">
+                <span class="mode-icon">✏️</span>
+                <span class="mode-copy">
+                  <span class="mode-title">Manual Mode</span>
+                  <span class="mode-desc">Choose the book, page, and focus</span>
+                </span>
+              </button>
+              <button class="mode-btn" id="randomModeBtn" type="button">
+                <span class="mode-icon">🎲</span>
+                <span class="mode-copy">
+                  <span class="mode-title">Training Mode</span>
+                  <span class="mode-desc">Roulette with book, page, and twist</span>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="content">
+        <div id="manualMode" class="view active">
+          <div class="manual-grid">
+            <div class="panel">
+              <div class="panel-title">Exercise Setup</div>
+              <div class="field-grid">
+                <div class="field">
+                  <label>Page</label>
+                  <input id="manualPage" type="number" min="1" placeholder="e.g. 42" />
+                </div>
+                <div class="field">
+                  <label>Available Time</label>
+                  <select id="manualTime">
+                    <option value="30 min">30 min</option>
+                    <option value="45 min">45 min</option>
+                    <option value="1 hour" selected>1 hour</option>
+                    <option value="2 hours">2 hours</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>Type</label>
+                  <select id="manualType">
+                    <option value="character">character</option>
+                    <option value="environment">environment</option>
+                    <option value="props">props</option>
+                    <option value="ui">ui</option>
+                    <option value="creature">creature</option>
+                    <option value="keyart">keyart</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>Difficulty</label>
+                  <select id="manualDifficulty">
+                    <option value="easy">easy</option>
+                    <option value="medium" selected>medium</option>
+                    <option value="hard">hard</option>
+                  </select>
+                </div>
+                <div class="field full">
+                  <label>Improvement Focus</label>
+                  <div class="chips" id="goalChips"></div>
+                </div>
+                <div class="field full">
+                  <label>Optional Notes</label>
+                  <textarea id="manualNotes" placeholder="Example: I want something useful for my portfolio, or to practice silhouette clarity and color."></textarea>
+                </div>
+              </div>
+              <div class="actions">
+                <button class="btn primary" id="generateManualBtn" type="button">Generate Brief</button>
+                <button class="btn ghost" id="useSelectedPageBtn" type="button">Suggest Page</button>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div class="panel-title">Selected Book</div>
+              <div id="selectedBookCard">
+                <div class="mini-card">
+                  <h4>No book selected</h4>
+                  <p>Select an artbook in the left column. Then you can generate a manual exercise from that book.</p>
+                </div>
+              </div>
+              <div class="mini-card">
+                <h4>How Page Suggestions Work</h4>
+                <p>Because the app does not analyze the actual content of each book, it uses plausible page ranges based on the exercise type: characters earlier, environments in the middle, props and UI later, and key art toward the end.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="randomMode" class="view hidden">
+          <div class="panel hero-challenge">
+            <div class="panel-title">Training Mode</div>
+            <div class="mission-card" id="missionCard">
+              <div class="mission-top">
+                <div class="mission-book">
+                  <div class="book-thumb" style="background:linear-gradient(135deg, rgba(255,122,198,0.28), rgba(124,58,237,0.28)); color: var(--accent-2);"><span>AI</span></div>
+                  <div>
+                    <h3 class="mission-title">Press "Start Training"</h3>
+                    <div class="mission-sub">The app will choose the book, page, type, and goal.</div>
+                  </div>
+                </div>
+                <div class="mission-page">
+                  <strong>-</strong>
+                  <span>page</span>
+                </div>
+              </div>
+              <div class="tags" id="missionTags"></div>
+            </div>
+            <div class="actions">
+              <button class="btn primary" id="rollBtn" type="button">🎲 Start Training</button>
+              <button class="btn" id="rerollBookBtn" type="button">Another Book</button>
+              <button class="btn" id="rerollTwistBtn" type="button">Another Twist</button>
+              <button class="btn ghost" id="saveSessionBtn" type="button">Save Session</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="output-grid">
+          <div class="panel brief">
+            <div class="panel-title">Generated Brief</div>
+            <div id="briefOutput">
+              <div class="mini-card">
+                <h4>Your exercise will appear here</h4>
+                <p>You can work in manual mode by selecting a book, or use training mode to receive a random challenge. You can also copy a ready prompt into ChatGPT to expand the brief.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-title">Saved Sessions</div>
+            <div class="sessions" id="savedSessions"></div>
+            <div class="actions" style="margin-top:14px;">
+              <button class="btn" id="exportBtn" type="button">Export JSON</button>
+              <button class="btn ghost" id="clearBtn" type="button">Clear History</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal hidden" id="addBookModal" aria-hidden="true">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-head">
+        <div>
+          <div class="modal-kicker">Library</div>
+          <h3 id="modalTitle">Add New Artbook</h3>
+        </div>
+        <button class="modal-close" id="closeModalBtn" aria-label="Close" type="button">×</button>
+      </div>
+
+      <div class="field-grid">
+        <div class="field full">
+          <label>Paste From Libib</label>
+          <textarea id="newBookImportText" placeholder="Paste a Libib block here and let the app extract the title, publisher, ISBNs, and cover."></textarea>
+        </div>
+        <div class="field full">
+          <button class="btn" id="parseImportBtn" type="button">Auto-fill From Pasted Text</button>
+        </div>
+        <div class="field">
+          <label>Title</label>
+          <input id="newBookTitle" type="text" placeholder="e.g. The Art of Hades" />
+        </div>
+        <div class="field">
+          <label>Publisher / Studio</label>
+          <input id="newBookPublisher" type="text" placeholder="e.g. Supergiant Games" />
+        </div>
+        <div class="field">
+          <label>Initials</label>
+          <input id="newBookInitials" type="text" maxlength="3" placeholder="SG" />
+        </div>
+        <div class="field">
+          <label>Color</label>
+          <input id="newBookColor" type="color" value="#a78bfa" style="height:46px; padding:6px;" />
+        </div>
+        <div class="field">
+          <label>ISBN-13</label>
+          <input id="newBookIsbn13" type="text" inputmode="numeric" placeholder="978..." />
+        </div>
+        <div class="field">
+          <label>ISBN-10</label>
+          <input id="newBookIsbn10" type="text" inputmode="numeric" placeholder="10-digit ISBN" />
+        </div>
+        <div class="field full">
+          <label>Cover URL</label>
+          <input id="newBookCover" type="url" placeholder="https://.../cover.jpg" />
+        </div>
+        <div class="field full">
+          <label>Tags</label>
+          <div class="chips" id="bookTagChips"></div>
+        </div>
+        <div class="field full">
+          <label>Optional Notes</label>
+          <textarea id="newBookNotes" placeholder="Example: ideal for stylized characters and colorful key art."></textarea>
+        </div>
+      </div>
+
+      <div class="mini-card" id="newBookPreview">
+        <h4>Preview</h4>
+        <p>Fill in the fields to preview how it will appear in the library.</p>
+      </div>
+
+      <div class="actions">
+        <button class="btn primary" id="saveBookBtn" type="button">Save Artbook</button>
+        <button class="btn ghost" id="cancelModalBtn" type="button">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
+

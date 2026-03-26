@@ -1,0 +1,209 @@
+﻿[
+    {
+        "id":  1,
+        "publisher":  "3dtotal Publishing",
+        "title":  "Sketching from the Imagination: Characters",
+        "color":  "#58c18f",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9781909414396-L.jpg",
+        "initials":  "3P",
+        "isbn13":  "9781909414396",
+        "isbn10":  "1909414395",
+        "tags":  [
+                     "anatomy",
+                     "character",
+                     "morphology",
+                     "study",
+                     "stylized"
+                 ]
+    },
+    {
+        "id":  2,
+        "publisher":  "EYROLLES",
+        "title":  "Dessin Fantasy : le manuel du débutant",
+        "color":  "#a67cf0",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9782416002540-L.jpg",
+        "initials":  "EYR",
+        "isbn13":  "9782416002540",
+        "isbn10":  "2416002546",
+        "tags":  [
+                     "anatomy",
+                     "character",
+                     "fantasy",
+                     "morphology",
+                     "study",
+                     "stylized"
+                 ]
+    },
+    {
+        "id":  3,
+        "publisher":  "Sixth \u0026 Spring Books",
+        "title":  "Figure It Out! Human Proportions: Draw the Head and Figure Right Every Time",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9781936096732-L.jpg",
+        "initials":  "SS",
+        "isbn13":  "9781936096732",
+        "isbn10":  "1936096730",
+        "tags":  [
+                     "anatomy",
+                     "character",
+                     "morphology",
+                     "realistic",
+                     "study"
+                 ]
+    },
+    {
+        "id":  4,
+        "publisher":  "DAIMON",
+        "title":  "Dibujo anatómico de la figura humana",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9789582200497-L.jpg",
+        "initials":  "DAI",
+        "isbn13":  "9789582200497",
+        "isbn10":  "9582200499",
+        "tags":  [
+                     "anatomy",
+                     "character",
+                     "morphology",
+                     "realistic",
+                     "study"
+                 ]
+    },
+    {
+        "id":  5,
+        "publisher":  "EYROLLES",
+        "title":  "Morpho : Mains et pieds",
+        "color":  "#a67cf0",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9782212677737-L.jpg",
+        "initials":  "EYR",
+        "isbn13":  "9782212677737",
+        "isbn10":  "2212677731",
+        "tags":  [
+                     "anatomy",
+                     "character",
+                     "morphology",
+                     "realistic",
+                     "study"
+                 ]
+    },
+    {
+        "id":  6,
+        "publisher":  "EYROLLES",
+        "title":  "Morpho Formes articulaires, fonctions musculaires",
+        "color":  "#a67cf0",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9782212677485-L.jpg",
+        "initials":  "EYR",
+        "isbn13":  "9782212677485",
+        "isbn10":  "2212677480",
+        "tags":  [
+                     "anatomy",
+                     "character",
+                     "morphology",
+                     "realistic",
+                     "study"
+                 ]
+    },
+    {
+        "id":  7,
+        "publisher":  "EYROLLES",
+        "title":  "Morpho Formes synthétiques",
+        "color":  "#a67cf0",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9782212673531-L.jpg",
+        "initials":  "EYR",
+        "isbn13":  "9782212673531",
+        "isbn10":  "2212673531",
+        "tags":  [
+                     "anatomy",
+                     "character",
+                     "morphology",
+                     "realistic",
+                     "study"
+                 ]
+    },
+    {
+        "id":  8,
+        "publisher":  "EYROLLES",
+        "title":  "Squelette, repères osseux",
+        "color":  "#a67cf0",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9782212675498-L.jpg",
+        "initials":  "EYR",
+        "isbn13":  "9782212675498",
+        "isbn10":  "2212675496",
+        "tags":  [
+                     "anatomy",
+                     "character",
+                     "morphology",
+                     "realistic",
+                     "study"
+                 ]
+    },
+    {
+        "id":  9,
+        "publisher":  "EYROLLES",
+        "title":  "Morpho XXL corps bodybuildés: Morpho : anatomie artistique",
+        "color":  "#a67cf0",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9782416000027-L.jpg",
+        "initials":  "EYR",
+        "isbn13":  "9782416000027",
+        "isbn10":  "2416000020",
+        "tags":  [
+                     "anatomy",
+                     "character",
+                     "morphology",
+                     "realistic",
+                     "study",
+                     "superhero"
+                 ]
+    },
+    {
+        "id":  10,
+        "publisher":  "EYROLLES",
+        "title":  "Morpho : Anatomie des plis de vêtements",
+        "color":  "#a67cf0",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9782416003400-L.jpg",
+        "initials":  "EYR",
+        "isbn13":  "9782416003400",
+        "isbn10":  "2416003402",
+        "tags":  [
+                     "anatomy",
+                     "character",
+                     "morphology",
+                     "props",
+                     "realistic",
+                     "study"
+                 ]
+    },
+    {
+        "id":  11,
+        "publisher":  "EYROLLES",
+        "title":  "Morpho : Anatomie artistique",
+        "color":  "#a67cf0",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9782212139143-L.jpg",
+        "initials":  "EYR",
+        "isbn13":  "9782212139143",
+        "isbn10":  "2212139144",
+        "tags":  [
+                     "anatomy",
+                     "character",
+                     "morphology",
+                     "realistic",
+                     "study"
+                 ]
+    },
+    {
+        "id":  12,
+        "publisher":  "TACO",
+        "title":  "포인트 캐릭터 드로잉 세트(전2권)",
+        "color":  "#ff7ac6",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9791163988199-L.jpg",
+        "initials":  "TAC",
+        "isbn13":  "9791163988199",
+        "isbn10":  "",
+        "tags":  [
+                     "anatomy",
+                     "character",
+                     "morphology",
+                     "realistic",
+                     "study"
+                 ]
+    }
+]

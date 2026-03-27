@@ -51,6 +51,7 @@ let seededBookCount = 0;
     let currentMission = null;
     const expandedPublishers = new Set();
     let saved = JSON.parse(localStorage.getItem("artbook_training_sessions") || "[]");
+    const MANUAL_COVER_KEY = "artbook_manual_covers";
 
     const libraryEl = document.getElementById("library");
     const searchInput = document.getElementById("searchInput");
@@ -99,13 +100,18 @@ let seededBookCount = 0;
       if (!Array.isArray(seededBooks)) throw new Error("books.json must contain an array of books.");
 
       seededBookCount = seededBooks.length;
-      books = seededBooks.map(book => ({ ...book }));
+      books = seededBooks.map(book => ({ ...book, originalCover: book.cover || "" }));
 
       const customBooks = JSON.parse(localStorage.getItem("artbook_custom_books") || "[]");
-      if (customBooks.length) books.push(...customBooks);
+      if (customBooks.length) books.push(...customBooks.map(book => ({ ...book, originalCover: book.originalCover || book.cover || "" })));
 
       const persistedCovers = JSON.parse(localStorage.getItem("artbook_auto_covers") || "{}");
+      const manualCovers = JSON.parse(localStorage.getItem(MANUAL_COVER_KEY) || "{}");
       books.forEach(book => {
+        if (manualCovers[book.id]) {
+          book.cover = manualCovers[book.id];
+          return;
+        }
         if (!book.cover && persistedCovers[book.id]) book.cover = persistedCovers[book.id];
       });
     }
@@ -245,6 +251,112 @@ let seededBookCount = 0;
       setSelectedBookTags(parsed.tags || []);
       updateNewBookPreview();
     }
+    function readManualCovers() {
+      return JSON.parse(localStorage.getItem(MANUAL_COVER_KEY) || "{}");
+    }
+
+    function writeManualCovers(covers) {
+      localStorage.setItem(MANUAL_COVER_KEY, JSON.stringify(covers));
+    }
+
+    function getCurrentBookById(id) {
+      return books.find(book => book.id === id) || null;
+    }
+
+    function applySelectedBookCover(coverUrl) {
+      if (!selectedBook) return;
+      const book = getCurrentBookById(selectedBook.id);
+      if (!book) return;
+      book.cover = coverUrl;
+      selectedBook = book;
+      renderLibrary();
+      renderSelectedBook();
+    }
+
+    function readFileAsDataUrl(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(String(reader.result || ""));
+        reader.onerror = () => reject(new Error("Image upload failed."));
+        reader.readAsDataURL(file);
+      });
+    }
+
+    async function handleSelectedCoverUpload(file) {
+      if (!selectedBook || !file) return;
+      if (!file.type.startsWith("image/")) {
+        alert("Please upload an image file.");
+        return;
+      }
+      if (file.size > 2 * 1024 * 1024) {
+        alert("Please use an image smaller than 2 MB so it can be stored safely in the browser.");
+        return;
+      }
+
+      const imageDataUrl = await readFileAsDataUrl(file);
+      const manualCovers = readManualCovers();
+      manualCovers[selectedBook.id] = imageDataUrl;
+      writeManualCovers(manualCovers);
+      applySelectedBookCover(imageDataUrl);
+    }
+
+    function canUseImageUrl(url) {
+      const normalized = normalizeCoverUrl(url);
+      if (!normalized) return Promise.resolve(false);
+      return new Promise(resolve => {
+        const image = new Image();
+        let settled = false;
+        const finish = (result) => {
+          if (settled) return;
+          settled = true;
+          resolve(result);
+        };
+        const timeoutId = setTimeout(() => finish(false), 8000);
+        image.onload = () => {
+          clearTimeout(timeoutId);
+          finish(true);
+        };
+        image.onerror = () => {
+          clearTimeout(timeoutId);
+          finish(false);
+        };
+        image.referrerPolicy = "no-referrer";
+        image.src = normalized;
+      });
+    }
+
+    async function handleSelectedCoverUrl(url) {
+      if (!selectedBook) return;
+      const normalized = normalizeCoverUrl(url);
+      if (!normalized) {
+        alert("Please paste a valid image URL.");
+        return;
+      }
+      const canUse = await canUseImageUrl(normalized);
+      if (!canUse) {
+        alert("That image URL could not be loaded. Try a direct image link that ends in .jpg, .png, or .webp.");
+        return;
+      }
+      const manualCovers = readManualCovers();
+      manualCovers[selectedBook.id] = normalized;
+      writeManualCovers(manualCovers);
+      applySelectedBookCover(normalized);
+    }
+
+    function removeSelectedBookCustomCover() {
+      if (!selectedBook) return;
+      const manualCovers = readManualCovers();
+      delete manualCovers[selectedBook.id];
+      writeManualCovers(manualCovers);
+      const book = getCurrentBookById(selectedBook.id);
+      if (!book) return;
+      const autoCovers = JSON.parse(localStorage.getItem("artbook_auto_covers") || "{}");
+      book.cover = book.originalCover || autoCovers[book.id] || "";
+      selectedBook = book;
+      renderLibrary();
+      renderSelectedBook();
+    }
+
     function clearFilters() {
       searchInput.value = "";
       filterType.value = "";
@@ -352,6 +464,8 @@ let seededBookCount = 0;
         selectedBookCard.innerHTML = `<div class="mini-card"><h4>No book selected</h4><p>Select a book in the left column. Then you can generate a manual exercise from that book.</p></div>`;
         return;
       }
+      const hasManualCover = !!readManualCovers()[selectedBook.id];
+      const googleCoverSearchUrl = `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(`${selectedBook.title} ${selectedBook.publisher} book cover`)}`;
       const isbnLines = [
         selectedBook.isbn13 ? `<span><strong style="color:var(--text)">ISBN-13:</strong> ${selectedBook.isbn13}</span>` : "",
         selectedBook.isbn10 ? `<span><strong style="color:var(--text)">ISBN-10:</strong> ${selectedBook.isbn10}</span>` : ""
@@ -365,6 +479,13 @@ let seededBookCount = 0;
               <h4 style="margin:0 0 4px; font-size:15px;">${selectedBook.title}</h4>
               <p><strong style="color:var(--text)">${selectedBook.publisher}</strong><br>${selectedBook.libraryType === "study" ? "Book of Study" : "Artbook"} • ${selectedBook.tags.join(" • ")}${isbnLines ? `<br><br>${isbnLines}` : ""}</p>
             </div>
+          </div>
+          <div class="actions" style="margin-top:12px;">
+            <button class="btn" data-upload-cover-btn type="button">Upload Cover</button>
+            <button class="btn ghost" data-cover-url-btn type="button">Set Cover URL</button>
+            <a class="btn ghost" href="${googleCoverSearchUrl}" target="_blank" rel="noreferrer">Search on Google</a>
+            <button class="btn ghost" data-remove-cover-btn type="button" ${hasManualCover ? "" : "disabled"}>Remove Custom Cover</button>
+            <input class="hidden" data-cover-upload-input type="file" accept="image/*" />
           </div>
         </div>
         <div class="mini-card">
@@ -696,7 +817,7 @@ let seededBookCount = 0;
       }
 
       const nextId = Math.max(...books.map(b => b.id), 0) + 1;
-      const newBook = { id: nextId, title, publisher, initials, color, cover, isbn13, isbn10, libraryType: newBookLibraryType.value || "artbook", tags };
+      const newBook = { id: nextId, title, publisher, initials, color, cover, originalCover: cover, isbn13, isbn10, libraryType: newBookLibraryType.value || "artbook", tags };
       books.push(newBook);
       const existingCustom = JSON.parse(localStorage.getItem("artbook_custom_books") || "[]");
       existingCustom.push(newBook);
@@ -718,9 +839,113 @@ let seededBookCount = 0;
       renderLibrary();
     }
 
+    const COVER_CACHE_KEY = "artbook_auto_covers";
+    const COVER_MISS_CACHE_KEY = "artbook_cover_misses";
+    const coverProbeCache = new Map();
+
     function getGoogleBookThumb(item) {
       const links = item?.volumeInfo?.imageLinks;
-      return links?.thumbnail || links?.smallThumbnail || links?.small || links?.medium || links?.large || "";
+      return links?.thumbnail || links?.smallThumbnail || links?.small || links?.medium || links?.large || links?.extraLarge || "";
+    }
+
+    function normalizeCoverUrl(url) {
+      return String(url || "")
+        .trim()
+        .replace(/^http:\/\//i, "https://")
+        .replace(/\&zoom=\d+/i, "&zoom=2");
+    }
+
+    function readCoverCache() {
+      return JSON.parse(localStorage.getItem(COVER_CACHE_KEY) || "{}");
+    }
+
+    function writeCoverCache(cache) {
+      localStorage.setItem(COVER_CACHE_KEY, JSON.stringify(cache));
+    }
+
+    function readCoverMisses() {
+      return JSON.parse(localStorage.getItem(COVER_MISS_CACHE_KEY) || "{}");
+    }
+
+    function writeCoverMisses(misses) {
+      localStorage.setItem(COVER_MISS_CACHE_KEY, JSON.stringify(misses));
+    }
+
+    function buildCoverLookupKeys(book) {
+      return [
+        book.id != null ? String(book.id) : "",
+        book.id != null ? `id:${book.id}` : "",
+        book.isbn13 ? `isbn13:${book.isbn13}` : "",
+        book.isbn10 ? `isbn10:${book.isbn10}` : "",
+        `title:${normalizeTitleForCompare(book.title)}|publisher:${normalizeTitleForCompare(book.publisher)}`
+      ].filter(Boolean);
+    }
+
+    function getCachedCover(book, cache = readCoverCache()) {
+      for (const key of buildCoverLookupKeys(book)) {
+        if (cache[key]) return cache[key];
+      }
+      return "";
+    }
+
+    function cacheCover(book, cover, cache = readCoverCache()) {
+      const normalized = normalizeCoverUrl(cover);
+      if (!normalized) return "";
+      buildCoverLookupKeys(book).forEach(key => {
+        cache[key] = normalized;
+      });
+      writeCoverCache(cache);
+      return normalized;
+    }
+
+    function getMissCount(book, misses = readCoverMisses()) {
+      for (const key of buildCoverLookupKeys(book)) {
+        if (misses[key]) return Number(misses[key]) || 0;
+      }
+      return 0;
+    }
+
+    function markCoverMiss(book, misses = readCoverMisses()) {
+      const nextCount = getMissCount(book, misses) + 1;
+      buildCoverLookupKeys(book).forEach(key => {
+        misses[key] = nextCount;
+      });
+      writeCoverMisses(misses);
+    }
+
+    function clearCoverMiss(book, misses = readCoverMisses()) {
+      buildCoverLookupKeys(book).forEach(key => {
+        delete misses[key];
+      });
+      writeCoverMisses(misses);
+    }
+
+    async function isImageReachable(url) {
+      const normalized = normalizeCoverUrl(url);
+      if (!normalized) return false;
+      if (coverProbeCache.has(normalized)) return coverProbeCache.get(normalized);
+
+      const probe = (async () => {
+        try {
+          const response = await fetch(normalized, { method: "HEAD", cache: "no-store" });
+          const type = response.headers.get("content-type") || "";
+          if (response.ok && type.includes("image")) return true;
+        } catch (error) {
+        }
+
+        try {
+          const response = await fetch(normalized, { method: "GET", cache: "no-store" });
+          const type = response.headers.get("content-type") || "";
+          return response.ok && type.includes("image");
+        } catch (error) {
+          return false;
+        }
+      })();
+
+      coverProbeCache.set(normalized, probe);
+      const ok = await probe;
+      if (!ok) coverProbeCache.delete(normalized);
+      return ok;
     }
 
     function scoreBookMatch(book, candidateTitle = "", candidatePublisher = "") {
@@ -747,27 +972,35 @@ let seededBookCount = 0;
       const items = Array.isArray(data?.items) ? data.items : [];
       if (!items.length) return "";
 
-      const best = items
+      const ranked = items
         .map(item => ({
           item,
           score: scoreBookMatch(
             book,
             item?.volumeInfo?.title || "",
-            (item?.volumeInfo?.publisher || "")
+            item?.volumeInfo?.publisher || ""
           ) + ((item?.volumeInfo?.industryIdentifiers || []).some(identifier => identifier.identifier === book.isbn13 || identifier.identifier === book.isbn10) ? 20 : 0)
         }))
-        .sort((a, b) => b.score - a.score)
-        .find(entry => getGoogleBookThumb(entry.item));
+        .sort((a, b) => b.score - a.score);
 
-      const thumb = best ? getGoogleBookThumb(best.item) : "";
-      return thumb ? thumb.replace(/^http:/, "https:") : "";
+      for (const entry of ranked) {
+        const thumb = normalizeCoverUrl(getGoogleBookThumb(entry.item));
+        if (thumb && await isImageReachable(thumb)) return thumb;
+      }
+
+      return "";
     }
 
     async function fetchOpenLibraryCoverByIsbn(isbn) {
       if (!isbn) return "";
-      const res = await fetch(`https://openlibrary.org/isbn/${isbn}.json`);
-      if (!res.ok) return `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg`;
-      return `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg`;
+      const candidates = [
+        `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg?default=false`,
+        `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg?default=false`
+      ];
+      for (const candidate of candidates) {
+        if (await isImageReachable(candidate)) return normalizeCoverUrl(candidate);
+      }
+      return "";
     }
 
     async function fetchOpenLibraryCover(book) {
@@ -789,15 +1022,66 @@ let seededBookCount = 0;
         .sort((a, b) => b.score - a.score)[0];
 
       if (!best?.doc?.cover_i) return "";
-      return `https://covers.openlibrary.org/b/id/${best.doc.cover_i}-L.jpg`;
+      const candidates = [
+        `https://covers.openlibrary.org/b/id/${best.doc.cover_i}-L.jpg?default=false`,
+        `https://covers.openlibrary.org/b/id/${best.doc.cover_i}-M.jpg?default=false`
+      ];
+      for (const candidate of candidates) {
+        if (await isImageReachable(candidate)) return normalizeCoverUrl(candidate);
+      }
+      return "";
+    }
+
+    async function fetchGoogleBooksFallbackByTitle(book) {
+      const query = `${book.title} ${book.publisher}`.trim();
+      if (!query) return "";
+      const url = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&maxResults=10&projection=lite&printType=books`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      const items = Array.isArray(data?.items) ? data.items : [];
+      const ranked = items
+        .map(item => ({
+          item,
+          score: scoreBookMatch(
+            book,
+            item?.volumeInfo?.title || "",
+            item?.volumeInfo?.publisher || ""
+          )
+        }))
+        .sort((a, b) => b.score - a.score);
+
+      for (const entry of ranked) {
+        const thumb = normalizeCoverUrl(getGoogleBookThumb(entry.item));
+        if (thumb && await isImageReachable(thumb)) return thumb;
+      }
+
+      return "";
+    }
+
+    async function fetchInternetArchiveCover(book) {
+      const isbn = String(book.isbn13 || book.isbn10 || "").trim();
+      if (!isbn) return "";
+      const candidates = [
+        `https://archive.org/download/isbn_${isbn}/isbn_${isbn}_L.jpg`,
+        `https://archive.org/download/isbn_${isbn}/isbn_${isbn}_M.jpg`
+      ];
+      for (const candidate of candidates) {
+        if (await isImageReachable(candidate)) return normalizeCoverUrl(candidate);
+      }
+      return "";
     }
 
     async function fetchCoverForBook(book) {
+      const cached = getCachedCover(book);
+      if (cached && await isImageReachable(cached)) return cached;
+      if (getMissCount(book) >= 3) return "";
+
       const isbns = [book.isbn13, book.isbn10].filter(Boolean);
       for (const isbn of isbns) {
         try {
           const cover = await fetchGoogleBooksCover(book, `isbn:${isbn}`);
-          if (cover) return cover;
+          if (cover) return cacheCover(book, cover);
         } catch (err) {
         }
       }
@@ -805,7 +1089,15 @@ let seededBookCount = 0;
       for (const isbn of isbns) {
         try {
           const cover = await fetchOpenLibraryCoverByIsbn(isbn);
-          if (cover) return cover;
+          if (cover) return cacheCover(book, cover);
+        } catch (err) {
+        }
+      }
+
+      for (const isbn of isbns) {
+        try {
+          const cover = await fetchInternetArchiveCover({ isbn13: isbn, isbn10: isbn });
+          if (cover) return cacheCover(book, cover);
         } catch (err) {
         }
       }
@@ -819,22 +1111,31 @@ let seededBookCount = 0;
       for (const query of queries) {
         try {
           const cover = await fetchGoogleBooksCover(book, query);
-          if (cover) return cover;
+          if (cover) return cacheCover(book, cover);
         } catch (err) {
         }
       }
 
       try {
-        return await fetchOpenLibraryCover(book);
+        const cover = await fetchOpenLibraryCover(book);
+        if (cover) return cacheCover(book, cover);
       } catch (err) {
-        return "";
       }
+
+      try {
+        const cover = await fetchGoogleBooksFallbackByTitle(book);
+        if (cover) return cacheCover(book, cover);
+      } catch (err) {
+      }
+
+      markCoverMiss(book);
+      return "";
     }
 
     async function autoFillCovers() {
       autoFillBtn.disabled = true;
       showStatus("Searching for covers automatically...");
-      const coverStore = JSON.parse(localStorage.getItem("artbook_auto_covers") || "{}");
+      const coverStore = readCoverCache();
       const toProcess = books.filter(book => !book.cover);
       let found = 0;
       let checked = 0;
@@ -845,7 +1146,8 @@ let seededBookCount = 0;
           checked += 1;
           if (cover) {
             book.cover = cover;
-            coverStore[book.id] = cover;
+            cacheCover(book, cover, coverStore);
+            clearCoverMiss(book);
             found += 1;
           }
           showStatus(`Searching covers... ${checked}/${toProcess.length} • found ${found}`);
@@ -858,7 +1160,7 @@ let seededBookCount = 0;
         await new Promise(resolve => setTimeout(resolve, 120));
       }
 
-      localStorage.setItem("artbook_auto_covers", JSON.stringify(coverStore));
+      writeCoverCache(coverStore);
       showStatus(`Finished: ${found} cover(s) found for ${toProcess.length} book(s) without a cover.`);
       autoFillBtn.disabled = false;
     }
@@ -891,6 +1193,42 @@ let seededBookCount = 0;
     document.getElementById("clearBtn").addEventListener("click", clearSessions);
     addBookBtn.addEventListener("click", openAddBookModal);
     autoFillBtn.addEventListener("click", autoFillCovers);
+    selectedBookCard.addEventListener("click", async (event) => {
+      const uploadBtn = event.target.closest("[data-upload-cover-btn]");
+      const coverUrlBtn = event.target.closest("[data-cover-url-btn]");
+      const removeBtn = event.target.closest("[data-remove-cover-btn]");
+      if (uploadBtn) {
+        const input = selectedBookCard.querySelector("[data-cover-upload-input]");
+        if (input) input.click();
+        return;
+      }
+      if (coverUrlBtn) {
+        const currentManualCover = readManualCovers()[selectedBook?.id] || "";
+        const suggestedUrl = currentManualCover && !currentManualCover.startsWith("data:") ? currentManualCover : (selectedBook?.cover && !String(selectedBook.cover).startsWith("data:") ? selectedBook.cover : "");
+        const pastedUrl = window.prompt("Paste the direct image URL for this book cover.", suggestedUrl);
+        if (pastedUrl === null) return;
+        try {
+          await handleSelectedCoverUrl(pastedUrl);
+        } catch (error) {
+          alert("That cover URL could not be saved.");
+        }
+        return;
+      }
+      if (removeBtn && !removeBtn.hasAttribute("disabled")) {
+        removeSelectedBookCustomCover();
+      }
+    });
+    selectedBookCard.addEventListener("change", async (event) => {
+      const input = event.target.closest("[data-cover-upload-input]");
+      if (!input || !input.files || !input.files[0]) return;
+      try {
+        await handleSelectedCoverUpload(input.files[0]);
+      } catch (error) {
+        alert("The selected image could not be used as a cover.");
+      } finally {
+        input.value = "";
+      }
+    });
     modalBackdrop.addEventListener("click", closeAddBookModal);
     closeModalBtn.addEventListener("click", closeAddBookModal);
     cancelModalBtn.addEventListener("click", closeAddBookModal);
@@ -941,6 +1279,9 @@ let seededBookCount = 0;
 
     window.copyPrompt = copyPrompt;
     window.saveCurrentBrief = saveCurrentBrief;
+
+
+
 
 
 

@@ -45,20 +45,35 @@ function Get-Tags {
   param(
     [string]$Title,
     [string]$TagText,
-    [string]$Group
+    [string]$Group,
+    [string]$Collection
   )
 
   $pool = [System.Collections.Generic.HashSet[string]]::new([System.StringComparer]::OrdinalIgnoreCase)
-  foreach ($tag in @('character', 'study', 'anatomy', 'morphology')) {
-    [void]$pool.Add($tag)
+  $text = @($Title, $TagText, $Group, $Collection) -join ' '
+
+  if ($Collection -match 'Artbooks') {
+    foreach ($tag in @('character', 'environment', 'props')) {
+      [void]$pool.Add($tag)
+    }
+  } else {
+    foreach ($tag in @('character', 'study', 'anatomy', 'morphology')) {
+      [void]$pool.Add($tag)
+    }
   }
 
-  $text = @($Title, $TagText, $Group) -join ' '
-  if ($text -match 'fantasy') { [void]$pool.Add('fantasy'); [void]$pool.Add('stylized') }
-  if ($text -match 'bodybuild|superhero') { [void]$pool.Add('realistic'); [void]$pool.Add('superhero') }
-  if ($text -match 'vêtement|clothing|plis|fold') { [void]$pool.Add('props') }
-  if ($text -match 'realistic|drawing') { [void]$pool.Add('realistic') }
-  if ($text -match 'stylized|character') { [void]$pool.Add('stylized') }
+  if ($text -match 'fantasy|rpg|mmo|mythologie') { [void]$pool.Add('fantasy') }
+  if ($text -match 'dark fantasy|bloodborne|elden ring|castlevania|diablo') { [void]$pool.Add('dark fantasy') }
+  if ($text -match 'futuristic|sci-fi|watch.?dogs|metal gear|overwatch') { [void]$pool.Add('sci-fi') }
+  if ($text -match 'superhero|batman|spider-man') { [void]$pool.Add('superhero') }
+  if ($text -match 'horror|survival') { [void]$pool.Add('horror') }
+  if ($text -match 'historical|assassin') { [void]$pool.Add('historical') }
+  if ($text -match 'mobile') { [void]$pool.Add('ui') }
+  if ($text -match 'cartoon|animation') { [void]$pool.Add('cartoon'); [void]$pool.Add('stylized') }
+  if ($text -match 'anime|guilty gear|genshin') { [void]$pool.Add('anime'); [void]$pool.Add('stylized') }
+  if ($text -match 'drawing|anatom|morpho|squelette|plis|fold|bodybuild') { [void]$pool.Add('study'); [void]$pool.Add('anatomy'); [void]$pool.Add('morphology') }
+  if ($text -match 'artwork|stylized|hearthstone|sea of stars|supercell|blizzard') { [void]$pool.Add('stylized') }
+  if ($text -match 'adventure|survival|realistic|tomb raider|last of us|metal gear|god of war') { [void]$pool.Add('realistic') }
 
   return @($pool | Sort-Object)
 }
@@ -99,7 +114,7 @@ foreach ($row in $csv) {
     initials = Get-Initials -Publisher $publisher -Title $row.title
     isbn13 = $isbn13
     isbn10 = $isbn10
-    tags = @(Get-Tags -Title $row.title -TagText $row.tags -Group $row.group)
+    tags = @(Get-Tags -Title $row.title -TagText $row.tags -Group $row.group -Collection $row.collection)
   }
 
   $books += [pscustomobject]$book
@@ -113,5 +128,6 @@ if ($targetDir) {
 
 $books | ConvertTo-Json -Depth 5 | Set-Content -Path $OutPath -Encoding UTF8
 Write-Output "Imported $($books.Count) books to $OutPath"
+
 
 

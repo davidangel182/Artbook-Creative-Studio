@@ -54,6 +54,7 @@ let seededBookCount = 0;
 
     const libraryEl = document.getElementById("library");
     const searchInput = document.getElementById("searchInput");
+    const filterLibraryType = document.getElementById("filterLibraryType");
     const filterType = document.getElementById("filterType");
     const filterStyle = document.getElementById("filterStyle");
     const filterWorld = document.getElementById("filterWorld");
@@ -74,6 +75,7 @@ let seededBookCount = 0;
     const cancelModalBtn = document.getElementById("cancelModalBtn");
     const saveBookBtn = document.getElementById("saveBookBtn");
     const bookTagChips = document.getElementById("bookTagChips");
+    const newBookLibraryType = document.getElementById("newBookLibraryType");
     const newBookTitle = document.getElementById("newBookTitle");
     const newBookPublisher = document.getElementById("newBookPublisher");
     const newBookInitials = document.getElementById("newBookInitials");
@@ -266,13 +268,14 @@ let seededBookCount = 0;
 
     function renderLibrary() {
       const q = searchInput.value.trim().toLowerCase();
+      const libraryType = filterLibraryType.value;
       const type = filterType.value;
       const style = filterStyle.value;
       const world = filterWorld.value;
 
       const items = books.filter(book => {
         const haystack = `${book.title} ${book.publisher} ${book.tags.join(" ")}`.toLowerCase();
-        return (!q || haystack.includes(q)) && (!type || book.tags.includes(type)) && (!style || book.tags.includes(style)) && (!world || book.tags.includes(world));
+        return (!q || haystack.includes(q)) && (!libraryType || book.libraryType === libraryType) && (!type || book.tags.includes(type)) && (!style || book.tags.includes(style)) && (!world || book.tags.includes(world));
       });
 
       libraryEl.innerHTML = "";
@@ -289,7 +292,7 @@ let seededBookCount = 0;
 
       const orderedGroups = [...grouped.entries()].sort((a, b) => a[0].localeCompare(b[0]));
       const forceOpenSelected = selectedBook ? selectedBook.publisher : "";
-      const useDefaultOpen = expandedPublishers.size === 0 && !forceOpenSelected && !q && !type && !style && !world;
+      const useDefaultOpen = expandedPublishers.size === 0 && !forceOpenSelected && !q && !libraryType && !type && !style && !world;
 
       orderedGroups.forEach(([publisher, publisherBooks], index) => {
         const group = document.createElement("details");
@@ -332,7 +335,7 @@ let seededBookCount = 0;
       if (selectedBook) {
         document.getElementById("headerEyebrow").textContent = selectedBook.publisher;
         document.getElementById("headerTitle").textContent = selectedBook.title;
-        document.getElementById("headerDesc").textContent = `Tags: ${selectedBook.tags.join(", ")}. You can use this book as the base for a manual exercise or ask for a plausible page suggestion.`;
+        document.getElementById("headerDesc").textContent = `Type: ${selectedBook.libraryType === "study" ? "Book of Study" : "Artbook"}. Tags: ${selectedBook.tags.join(", ")}. You can use this book as the base for a manual exercise or ask for a plausible page suggestion.`;
       }
     }
 
@@ -346,7 +349,7 @@ let seededBookCount = 0;
 
     function renderSelectedBook() {
       if (!selectedBook) {
-        selectedBookCard.innerHTML = `<div class="mini-card"><h4>No book selected</h4><p>Select an artbook in the left column. Then you can generate a manual exercise from that book.</p></div>`;
+        selectedBookCard.innerHTML = `<div class="mini-card"><h4>No book selected</h4><p>Select a book in the left column. Then you can generate a manual exercise from that book.</p></div>`;
         return;
       }
       const isbnLines = [
@@ -360,7 +363,7 @@ let seededBookCount = 0;
             ${makeThumbMarkup(selectedBook, 64, 84)}
             <div>
               <h4 style="margin:0 0 4px; font-size:15px;">${selectedBook.title}</h4>
-              <p><strong style="color:var(--text)">${selectedBook.publisher}</strong><br>${selectedBook.tags.join(" • ")}${isbnLines ? `<br><br>${isbnLines}` : ""}</p>
+              <p><strong style="color:var(--text)">${selectedBook.publisher}</strong><br>${selectedBook.libraryType === "study" ? "Book of Study" : "Artbook"} • ${selectedBook.tags.join(" • ")}${isbnLines ? `<br><br>${isbnLines}` : ""}</p>
             </div>
           </div>
         </div>
@@ -454,10 +457,11 @@ let seededBookCount = 0;
     }
 
     function filteredBooksForTraining() {
+      const libraryType = filterLibraryType.value;
       const type = filterType.value;
       const style = filterStyle.value;
       const world = filterWorld.value;
-      return books.filter(book => (!type || book.tags.includes(type)) && (!style || book.tags.includes(style)) && (!world || book.tags.includes(world)));
+      return books.filter(book => (!libraryType || book.libraryType === libraryType) && (!type || book.tags.includes(type)) && (!style || book.tags.includes(style)) && (!world || book.tags.includes(world)));
     }
 
     function renderMission(brief) {
@@ -485,7 +489,7 @@ let seededBookCount = 0;
 
     function generateManualBrief() {
       if (!selectedBook) {
-        alert("Select an artbook first.");
+        alert("Select a book first.");
         return;
       }
       const type = document.getElementById("manualType").value;
@@ -692,12 +696,13 @@ let seededBookCount = 0;
       }
 
       const nextId = Math.max(...books.map(b => b.id), 0) + 1;
-      const newBook = { id: nextId, title, publisher, initials, color, cover, isbn13, isbn10, tags };
+      const newBook = { id: nextId, title, publisher, initials, color, cover, isbn13, isbn10, libraryType: newBookLibraryType.value || "artbook", tags };
       books.push(newBook);
       const existingCustom = JSON.parse(localStorage.getItem("artbook_custom_books") || "[]");
       existingCustom.push(newBook);
       localStorage.setItem("artbook_custom_books", JSON.stringify(existingCustom));
       closeAddBookModal();
+      newBookLibraryType.value = "artbook";
       newBookTitle.value = "";
       newBookPublisher.value = "";
       newBookInitials.value = "";
@@ -869,6 +874,7 @@ let seededBookCount = 0;
     }
 
     searchInput.addEventListener("input", renderLibrary);
+    filterLibraryType.addEventListener("change", renderLibrary);
     filterType.addEventListener("change", renderLibrary);
     filterStyle.addEventListener("change", renderLibrary);
     filterWorld.addEventListener("change", renderLibrary);
@@ -898,6 +904,7 @@ let seededBookCount = 0;
       applyImportedBookData(parsed);
     });
     [newBookTitle, newBookPublisher, newBookInitials, newBookColor, newBookIsbn13, newBookIsbn10, newBookCover, newBookNotes].forEach(el => el.addEventListener("input", updateNewBookPreview));
+    newBookLibraryType.addEventListener("change", updateNewBookPreview);
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && !addBookModal.classList.contains("hidden")) closeAddBookModal();
     });
@@ -910,6 +917,7 @@ let seededBookCount = 0;
       console.assert(Array.isArray(books) && books.length > 0, "books should be a non-empty array");
       console.assert(seededBookCount > 0, "seeded library should load from books.json");
       console.assert(books.slice(0, seededBookCount).every(book => book.isbn13 || book.isbn10), "each seeded book should include an ISBN for cover lookup");
+      console.assert(books.every(book => book.libraryType === "study" || book.libraryType === "artbook"), "each book should include a valid libraryType");
     }
 
     async function initApp() {
@@ -933,6 +941,11 @@ let seededBookCount = 0;
 
     window.copyPrompt = copyPrompt;
     window.saveCurrentBrief = saveCurrentBrief;
+
+
+
+
+
 
 
 

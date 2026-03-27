@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Artbook Training Studio</title>
+  <title>Artbook & Study Library</title>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./style.css">
 </head>
@@ -11,8 +11,8 @@
   <div class="app">
     <aside class="sidebar">
       <div class="brand">
-        <h1>Artbook Studio</h1>
-        <p>Creative Reference System</p>
+        <h1>Artbook & Study Library</h1>
+        <p>Creative reference system</p>
       </div>
 
       <div class="search">
@@ -21,12 +21,17 @@
       </div>
 
       <div class="sidebar-actions">
-        <button class="add-book-btn" id="addBookBtn" type="button">+ Add New Artbook</button>
+        <button class="add-book-btn" id="addBookBtn" type="button">+ Add New Book</button>
         <button class="auto-cover-btn" id="autoFillBtn" type="button">Auto-fill Covers</button>
       </div>
 
       <div class="filters">
         <h3>Quick Filter</h3>
+        <select id="filterLibraryType">
+          <option value="">Library Type</option>
+          <option value="study">book of study</option>
+          <option value="artbook">artbook</option>
+        </select>
         <select id="filterType">
           <option value="">Piece Type</option>
           <option value="character">character</option>
@@ -65,8 +70,8 @@
       <header class="header">
         <div class="header-main">
           <div class="header-copy">
-            <div class="eyebrow" id="headerEyebrow">Select an artbook</div>
-            <h2 id="headerTitle">Artbook Creative Studio</h2>
+            <div class="eyebrow" id="headerEyebrow">Select a book</div>
+            <h2 id="headerTitle">Artbook & Study Library</h2>
             <div class="desc" id="headerDesc">Your visual reference system and idea generator. Choose a book or use the training roulette to receive a challenge with a book, a plausible page, and a focused improvement goal.</div>
           </div>
           <div class="header-tools">
@@ -148,7 +153,7 @@
               <div id="selectedBookCard">
                 <div class="mini-card">
                   <h4>No book selected</h4>
-                  <p>Select an artbook in the left column. Then you can generate a manual exercise from that book.</p>
+                  <p>Select a book in the left column. Then you can generate a manual exercise from that book.</p>
                 </div>
               </div>
               <div class="mini-card">
@@ -217,7 +222,7 @@
       <div class="modal-head">
         <div>
           <div class="modal-kicker">Library</div>
-          <h3 id="modalTitle">Add New Artbook</h3>
+          <h3 id="modalTitle">Add New Book</h3>
         </div>
         <button class="modal-close" id="closeModalBtn" aria-label="Close" type="button">×</button>
       </div>
@@ -229,6 +234,13 @@
         </div>
         <div class="field full">
           <button class="btn" id="parseImportBtn" type="button">Auto-fill From Pasted Text</button>
+        </div>
+        <div class="field">
+          <label>Library Type</label>
+          <select id="newBookLibraryType">
+            <option value="artbook" selected>artbook</option>
+            <option value="study">book of study</option>
+          </select>
         </div>
         <div class="field">
           <label>Title</label>
@@ -274,7 +286,7 @@
       </div>
 
       <div class="actions">
-        <button class="btn primary" id="saveBookBtn" type="button">Save Artbook</button>
+        <button class="btn primary" id="saveBookBtn" type="button">Save Book</button>
         <button class="btn ghost" id="cancelModalBtn" type="button">Cancel</button>
       </div>
     </div>
@@ -283,4 +295,7 @@
   <script src="./app.js"></script>
 </body>
 </html>
+
+
+
 

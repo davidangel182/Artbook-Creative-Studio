@@ -14,7 +14,8 @@
                      "morphology",
                      "study",
                      "stylized"
-                 ]
+                 ],
+        "libraryType":  "study"
     },
     {
         "id":  2,
@@ -32,7 +33,8 @@
                      "morphology",
                      "study",
                      "stylized"
-                 ]
+                 ],
+        "libraryType":  "study"
     },
     {
         "id":  3,
@@ -49,7 +51,8 @@
                      "morphology",
                      "realistic",
                      "study"
-                 ]
+                 ],
+        "libraryType":  "study"
     },
     {
         "id":  4,
@@ -66,7 +69,8 @@
                      "morphology",
                      "realistic",
                      "study"
-                 ]
+                 ],
+        "libraryType":  "study"
     },
     {
         "id":  5,
@@ -83,7 +87,8 @@
                      "morphology",
                      "realistic",
                      "study"
-                 ]
+                 ],
+        "libraryType":  "study"
     },
     {
         "id":  6,
@@ -100,7 +105,8 @@
                      "morphology",
                      "realistic",
                      "study"
-                 ]
+                 ],
+        "libraryType":  "study"
     },
     {
         "id":  7,
@@ -117,7 +123,8 @@
                      "morphology",
                      "realistic",
                      "study"
-                 ]
+                 ],
+        "libraryType":  "study"
     },
     {
         "id":  8,
@@ -134,7 +141,8 @@
                      "morphology",
                      "realistic",
                      "study"
-                 ]
+                 ],
+        "libraryType":  "study"
     },
     {
         "id":  9,
@@ -152,7 +160,8 @@
                      "realistic",
                      "study",
                      "superhero"
-                 ]
+                 ],
+        "libraryType":  "study"
     },
     {
         "id":  10,
@@ -170,7 +179,8 @@
                      "props",
                      "realistic",
                      "study"
-                 ]
+                 ],
+        "libraryType":  "study"
     },
     {
         "id":  11,
@@ -187,7 +197,8 @@
                      "morphology",
                      "realistic",
                      "study"
-                 ]
+                 ],
+        "libraryType":  "study"
     },
     {
         "id":  12,
@@ -204,6 +215,1360 @@
                      "morphology",
                      "realistic",
                      "study"
-                 ]
+                 ],
+        "libraryType":  "study"
+    },
+    {
+        "id":  13,
+        "publisher":  "HUGINN MUNINN EDITIONS",
+        "title":  "Tout l\u0027art de Blizzard",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9782364800496-L.jpg",
+        "initials":  "HM",
+        "isbn13":  "9782364800496",
+        "isbn10":  "2364800498",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "fantasy",
+                     "props",
+                     "stylized"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  14,
+        "publisher":  "Square Enix Books",
+        "title":  "Final Fantasy VII Remake: Material Ultimania",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9781646091218-L.jpg",
+        "initials":  "SE",
+        "isbn13":  "9781646091218",
+        "isbn10":  "1646091213",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "fantasy",
+                     "props"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  15,
+        "publisher":  "UBISOFT",
+        "title":  "The Art of Assassin\u0027s Creed III",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9781781164259-L.jpg",
+        "initials":  "UBI",
+        "isbn13":  "9781781164259",
+        "isbn10":  "1781164258",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "historical",
+                     "props",
+                     "realistic"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  16,
+        "publisher":  "HUGINN MUNINN EDITIONS",
+        "title":  "Tout l\u0027art de Watchdogs",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9782364801585-L.jpg",
+        "initials":  "HM",
+        "isbn13":  "9782364801585",
+        "isbn10":  "2364801583",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "props",
+                     "sci-fi"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  17,
+        "publisher":  "Dark Horse Comics",
+        "title":  "The Art of the Last of Us Part II",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9781506713762-L.jpg",
+        "initials":  "DH",
+        "isbn13":  "9781506713762",
+        "isbn10":  "1506713769",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "horror",
+                     "props",
+                     "realistic"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  18,
+        "publisher":  "Mana Books",
+        "title":  "L\u0027 ART DE ELDEN RING - VOLUME 2 (+ coffret offert)",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9791035504465-L.jpg",
+        "initials":  "MB",
+        "isbn13":  "9791035504465",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "dark fantasy",
+                     "environment",
+                     "fantasy",
+                     "props"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  19,
+        "publisher":  "Dark Horse Books",
+        "title":  "The Art of Metal Gear Solid V",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9781506701103-L.jpg",
+        "initials":  "DH",
+        "isbn13":  "9781506701103",
+        "isbn10":  "1506701108",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "props",
+                     "realistic",
+                     "sci-fi"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  20,
+        "publisher":  "BLIZZARD",
+        "title":  "Blizzard Entertainment: Art of Hearthstone",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9783833236877-L.jpg",
+        "initials":  "BLI",
+        "isbn13":  "9783833236877",
+        "isbn10":  "3833236876",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "fantasy",
+                     "props",
+                     "stylized",
+                     "ui"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  21,
+        "publisher":  "Huginn \u0026 Muninn",
+        "title":  "Tout l\u0027art de Batman par Rocksteady",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9782364803510-L.jpg",
+        "initials":  "HM",
+        "isbn13":  "9782364803510",
+        "isbn10":  "2364803519",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "props",
+                     "superhero"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  22,
+        "publisher":  "Mana Books",
+        "title":  "God of War : Artbook officiel",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9791035500344-L.jpg",
+        "initials":  "MB",
+        "isbn13":  "9791035500344",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "fantasy",
+                     "props",
+                     "realistic"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  23,
+        "publisher":  "Dark Horse Comics",
+        "title":  "The Art of the Last of Us",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9781616551643-L.jpg",
+        "initials":  "DH",
+        "isbn13":  "9781616551643",
+        "isbn10":  "161655164X",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "horror",
+                     "props",
+                     "realistic"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  24,
+        "publisher":  "Brady Games",
+        "title":  "TOMB RAIDER L’ART DE LA SURVIE",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9788863552409-L.jpg",
+        "initials":  "BG",
+        "isbn13":  "9788863552409",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "horror",
+                     "props",
+                     "realistic"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  25,
+        "publisher":  "Mana Books",
+        "title":  "Bloodborne - Artbook officiel",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9791035500016-L.jpg",
+        "initials":  "MB",
+        "isbn13":  "9791035500016",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "dark fantasy",
+                     "environment",
+                     "fantasy",
+                     "horror",
+                     "props"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  26,
+        "publisher":  "THIRD ED",
+        "title":  "Sea of Stars: Les concept arts de Bryce Kho",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9782377845125-L.jpg",
+        "initials":  "TE",
+        "isbn13":  "9782377845125",
+        "isbn10":  "2377845126",
+        "tags":  [
+                     "cartoon",
+                     "character",
+                     "environment",
+                     "fantasy",
+                     "props",
+                     "stylized"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  27,
+        "publisher":  "Dark Horse Books",
+        "title":  "The Art of Supercell: 10th Anniversary Edition",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9781506715568-L.jpg",
+        "initials":  "DH",
+        "isbn13":  "9781506715568",
+        "isbn10":  "1506715567",
+        "tags":  [
+                     "cartoon",
+                     "character",
+                     "environment",
+                     "props",
+                     "stylized",
+                     "ui"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  28,
+        "publisher":  "Dark Horse Comics",
+        "title":  "Castlevania: The Art of the Animated Series",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9781506715704-L.jpg",
+        "initials":  "DH",
+        "isbn13":  "9781506715704",
+        "isbn10":  "1506715702",
+        "tags":  [
+                     "cartoon",
+                     "character",
+                     "dark fantasy",
+                     "environment",
+                     "fantasy",
+                     "horror",
+                     "props",
+                     "stylized"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  29,
+        "publisher":  "FROMSOFTWARE",
+        "title":  "L\u0027 art de Elden Ring",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9791035504502-L.jpg",
+        "initials":  "FRO",
+        "isbn13":  "9791035504502",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "dark fantasy",
+                     "environment",
+                     "fantasy",
+                     "props"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  30,
+        "publisher":  "BLIZZARD",
+        "title":  "Tout l\u0027art d\u0027Overwatch",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9791035500078-L.jpg",
+        "initials":  "BLI",
+        "isbn13":  "9791035500078",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "fantasy",
+                     "props",
+                     "sci-fi",
+                     "stylized"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  31,
+        "publisher":  "Arc system works",
+        "title":  "GUILTY GEAR X RD",
+        "color":  "#6ea8ff",
+        "cover":  "",
+        "initials":  "AS",
+        "isbn13":  "",
+        "isbn10":  "",
+        "tags":  [
+                     "anime",
+                     "character",
+                     "environment",
+                     "props",
+                     "stylized"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  32,
+        "publisher":  "Titan Books",
+        "title":  "The Art of Watch_Dogs (80 Page \"Dedsec\" Edition) [Watch Dogs/Watchdogs]",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9781783290789-L.jpg",
+        "initials":  "TB",
+        "isbn13":  "9781783290789",
+        "isbn10":  "1783290781",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "props",
+                     "sci-fi"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  33,
+        "publisher":  "Triforce",
+        "title":  "Arkham Origins Artbook",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/5000169925-L.jpg",
+        "initials":  "TRI",
+        "isbn13":  "",
+        "isbn10":  "5000169925",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "props",
+                     "superhero"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  34,
+        "publisher":  "Triforce",
+        "title":  "Batman: Arkham Knight",
+        "color":  "#6ea8ff",
+        "cover":  "",
+        "initials":  "TRI",
+        "isbn13":  "",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "props",
+                     "superhero"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  35,
+        "publisher":  "SQUARE ENIX",
+        "title":  "The art of Final Fantasy VII Rebirth",
+        "color":  "#6ea8ff",
+        "cover":  "",
+        "initials":  "SE",
+        "isbn13":  "",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "fantasy",
+                     "props"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  36,
+        "publisher":  "SQUARE ENIX",
+        "title":  "The art of Final Fantasy VII REMAKE",
+        "color":  "#6ea8ff",
+        "cover":  "",
+        "initials":  "SE",
+        "isbn13":  "",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "fantasy",
+                     "props"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  37,
+        "publisher":  "Croteam",
+        "title":  "The art of Talos Principle II",
+        "color":  "#6ea8ff",
+        "cover":  "",
+        "initials":  "CRO",
+        "isbn13":  "",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "props"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  38,
+        "publisher":  "NCSOFT",
+        "title":  "Art of Guild Wars - Book 2",
+        "color":  "#6ea8ff",
+        "cover":  "",
+        "initials":  "NCS",
+        "isbn13":  "",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "fantasy",
+                     "props"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  39,
+        "publisher":  "Titan Books",
+        "title":  "The art of Assasin’s Creed Unity",
+        "color":  "#6ea8ff",
+        "cover":  "",
+        "initials":  "TB",
+        "isbn13":  "",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "props",
+                     "realistic"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  40,
+        "publisher":  "Warner Bros Games",
+        "title":  "Arkham City Collectible Artbook",
+        "color":  "#6ea8ff",
+        "cover":  "",
+        "initials":  "WB",
+        "isbn13":  "",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "props",
+                     "superhero"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  41,
+        "publisher":  "Titan Books",
+        "title":  "The art pf assasin’s creed syndicate",
+        "color":  "#6ea8ff",
+        "cover":  "",
+        "initials":  "TB",
+        "isbn13":  "",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "props",
+                     "realistic"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  42,
+        "publisher":  "Titan books",
+        "title":  "The art of assasin’s creee black flag",
+        "color":  "#6ea8ff",
+        "cover":  "",
+        "initials":  "TB",
+        "isbn13":  "",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "props",
+                     "realistic"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  43,
+        "publisher":  "Titan books",
+        "title":  "The art of assasin’s creed revelations",
+        "color":  "#6ea8ff",
+        "cover":  "",
+        "initials":  "TB",
+        "isbn13":  "",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "props",
+                     "realistic"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  44,
+        "publisher":  "Dark Horse books",
+        "title":  "The art of detroit become human",
+        "color":  "#6ea8ff",
+        "cover":  "",
+        "initials":  "DH",
+        "isbn13":  "",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "props",
+                     "sci-fi"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  45,
+        "publisher":  "Microsoft",
+        "title":  "Forza motosport 4",
+        "color":  "#6ea8ff",
+        "cover":  "",
+        "initials":  "MIC",
+        "isbn13":  "",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "props"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  46,
+        "publisher":  "UDON",
+        "title":  "Darksiders II artwork chronicles",
+        "color":  "#6ea8ff",
+        "cover":  "",
+        "initials":  "UDO",
+        "isbn13":  "",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "dark fantasy",
+                     "environment",
+                     "fantasy",
+                     "props",
+                     "stylized"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  47,
+        "publisher":  "Titan books",
+        "title":  "Spider-man, the art lf the game",
+        "color":  "#6ea8ff",
+        "cover":  "",
+        "initials":  "TB",
+        "isbn13":  "",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "props",
+                     "superhero"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  48,
+        "publisher":  "Nintendo",
+        "title":  "Bravely default, the artbook",
+        "color":  "#6ea8ff",
+        "cover":  "",
+        "initials":  "NIN",
+        "isbn13":  "",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "fantasy",
+                     "props",
+                     "ui"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  49,
+        "publisher":  "Nintendo",
+        "title":  "The legend of Zelda, Tears of kingdom",
+        "color":  "#6ea8ff",
+        "cover":  "",
+        "initials":  "NIN",
+        "isbn13":  "",
+        "isbn10":  "",
+        "tags":  [
+                     "cartoon",
+                     "character",
+                     "environment",
+                     "props",
+                     "realistic",
+                     "stylized"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  50,
+        "publisher":  "Shueisha",
+        "title":  "Final fantasy Advent children prologue",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/4087793397-L.jpg",
+        "initials":  "SHU",
+        "isbn13":  "",
+        "isbn10":  "4087793397",
+        "tags":  [
+                     "cartoon",
+                     "character",
+                     "environment",
+                     "fantasy",
+                     "props",
+                     "stylized"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  51,
+        "publisher":  "DK publishing",
+        "title":  "Final fantasy XII Art collection",
+        "color":  "#6ea8ff",
+        "cover":  "",
+        "initials":  "DP",
+        "isbn13":  "",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "fantasy",
+                     "props"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  52,
+        "publisher":  "GORILLAZ",
+        "title":  "Jamie Hewlett. 45th Ed.",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9783836582636-L.jpg",
+        "initials":  "GOR",
+        "isbn13":  "9783836582636",
+        "isbn10":  "3836582635",
+        "tags":  [
+                     "cartoon",
+                     "character",
+                     "environment",
+                     "props",
+                     "stylized"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  53,
+        "publisher":  "miHoyo",
+        "title":  "Genshin Impact - Artbook Officiel Vol.1",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9791035503512-L.jpg",
+        "initials":  "MIH",
+        "isbn13":  "9791035503512",
+        "isbn10":  "",
+        "tags":  [
+                     "anime",
+                     "character",
+                     "environment",
+                     "fantasy",
+                     "props",
+                     "stylized",
+                     "ui"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  54,
+        "publisher":  "Titan Books Ltd",
+        "title":  "Marvel\u0027s Guardians of the Galaxy: The Art of the Game",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9781789096743-L.jpg",
+        "initials":  "TB",
+        "isbn13":  "9781789096743",
+        "isbn10":  "178909674X",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "props",
+                     "superhero"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  55,
+        "publisher":  "Blizzard",
+        "title":  "Diablo III Reaper of souls, images de",
+        "color":  "#6ea8ff",
+        "cover":  "",
+        "initials":  "BLI",
+        "isbn13":  "",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "dark fantasy",
+                     "environment",
+                     "fantasy",
+                     "horror",
+                     "props",
+                     "stylized"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  56,
+        "publisher":  "Blizzard",
+        "title":  "Diablo III images",
+        "color":  "#6ea8ff",
+        "cover":  "",
+        "initials":  "BLI",
+        "isbn13":  "",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "dark fantasy",
+                     "environment",
+                     "fantasy",
+                     "horror",
+                     "props",
+                     "stylized"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  57,
+        "publisher":  "Panini France",
+        "title":  "L\u0027 art des cinématiques de World of Warcraft",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9782809403596-L.jpg",
+        "initials":  "PF",
+        "isbn13":  "9782809403596",
+        "isbn10":  "2809403597",
+        "tags":  [
+                     "cartoon",
+                     "character",
+                     "environment",
+                     "fantasy",
+                     "props",
+                     "stylized"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  58,
+        "publisher":  "Blizzard",
+        "title":  "The art of World of Warcraft Cataclysm",
+        "color":  "#6ea8ff",
+        "cover":  "",
+        "initials":  "BLI",
+        "isbn13":  "",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "fantasy",
+                     "props",
+                     "realistic",
+                     "stylized"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  59,
+        "publisher":  "Blizzard",
+        "title":  "The art of World of Warcraft Mists of Pandaria",
+        "color":  "#6ea8ff",
+        "cover":  "",
+        "initials":  "BLI",
+        "isbn13":  "",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "fantasy",
+                     "props",
+                     "realistic",
+                     "stylized"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  60,
+        "publisher":  "Konami digital entertainement",
+        "title":  "Castlevania: Lords of shadow 2 artbook",
+        "color":  "#6ea8ff",
+        "cover":  "",
+        "initials":  "KD",
+        "isbn13":  "",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "dark fantasy",
+                     "environment",
+                     "fantasy",
+                     "props"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  61,
+        "publisher":  "Titan Books",
+        "title":  "The Art of Death Stranding",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9781789091564-L.jpg",
+        "initials":  "TB",
+        "isbn13":  "9781789091564",
+        "isbn10":  "178909156X",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "horror",
+                     "props",
+                     "realistic",
+                     "sci-fi"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  62,
+        "publisher":  "BL publishing",
+        "title":  "L’art de Warhammer online",
+        "color":  "#6ea8ff",
+        "cover":  "",
+        "initials":  "BP",
+        "isbn13":  "",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "dark fantasy",
+                     "environment",
+                     "fantasy",
+                     "props"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  63,
+        "publisher":  "Omake books",
+        "title":  "The Art of Northgard (standard)",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9782379890871-L.jpg",
+        "initials":  "OB",
+        "isbn13":  "9782379890871",
+        "isbn10":  "2379890870",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "fantasy",
+                     "props"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  64,
+        "publisher":  "Blizzard",
+        "title":  "The art of Starcraft heart of the swarm",
+        "color":  "#6ea8ff",
+        "cover":  "",
+        "initials":  "BLI",
+        "isbn13":  "",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "horror",
+                     "props",
+                     "sci-fi",
+                     "stylized"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  65,
+        "publisher":  "Hachette Pratique",
+        "title":  "Tout l\u0027art de Assassin\u0027s Creed Origins",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9782017032199-L.jpg",
+        "initials":  "HP",
+        "isbn13":  "9782017032199",
+        "isbn10":  "2017032190",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "fantasy",
+                     "historical",
+                     "props",
+                     "realistic"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  66,
+        "publisher":  "Minotauro",
+        "title":  "El arte de Assassin\u0027s Creed: Valhalla",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9788445009529-L.jpg",
+        "initials":  "MIN",
+        "isbn13":  "9788445009529",
+        "isbn10":  "8445009524",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "fantasy",
+                     "historical",
+                     "props",
+                     "realistic"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  67,
+        "publisher":  "HiComics",
+        "title":  "Rick and Morty, l\u0027artbook officiel",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9782378870492-L.jpg",
+        "initials":  "HIC",
+        "isbn13":  "9782378870492",
+        "isbn10":  "2378870493",
+        "tags":  [
+                     "cartoon",
+                     "character",
+                     "environment",
+                     "props",
+                     "stylized"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  68,
+        "publisher":  "Square Enix",
+        "title":  "A Realm Reborn: the Art of Eorzea",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9781646091324-L.jpg",
+        "initials":  "SE",
+        "isbn13":  "9781646091324",
+        "isbn10":  "1646091329",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "fantasy",
+                     "props"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  69,
+        "publisher":  "SQUARE ENIX",
+        "title":  "FINAL FANTASY XIV: SHADOWBRINGERS | The Art of Reflection - Histories Unwritten -",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9784757571792-L.jpg",
+        "initials":  "SE",
+        "isbn13":  "9784757571792",
+        "isbn10":  "4757571798",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "fantasy",
+                     "props"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  70,
+        "publisher":  "SQUARE ENIX",
+        "title":  "FINAL FANTASY XIV: SHADOWBRINGERS The Art of Reflection Histories Forsaken",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9784757564909-L.jpg",
+        "initials":  "SE",
+        "isbn13":  "9784757564909",
+        "isbn10":  "4757564902",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "fantasy",
+                     "props"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  71,
+        "publisher":  "スクウェア・エニックス",
+        "title":  "FINAL FANTASY XIV: STORMBLOOD | Art of the Revolution - Eastern Memories - (Japanese Edition)",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9784757560383-L.jpg",
+        "initials":  "スエ",
+        "isbn13":  "9784757560383",
+        "isbn10":  "4757560389",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "fantasy",
+                     "props"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  72,
+        "publisher":  "SQUARE ENIX",
+        "title":  "FINAL FANTASY XIV: HEAVENSWARD | The Art of Ishgard - Stone and Steel - (SE-MOOK) [Japan Import]",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9784757548558-L.jpg",
+        "initials":  "SE",
+        "isbn13":  "9784757548558",
+        "isbn10":  "4757548559",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "fantasy",
+                     "props"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  73,
+        "publisher":  "SQUARE ENIX",
+        "title":  "FINAL FANTASY XIV: HEAVENSWARD: The Art of Ishgard - The Scars of War - (SE-MOOK)",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9784757553118-L.jpg",
+        "initials":  "SE",
+        "isbn13":  "9784757553118",
+        "isbn10":  "4757553110",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "fantasy",
+                     "props"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  74,
+        "publisher":  "SQUARE ENIX",
+        "title":  "FINAL FANTASY XIV: ENDWALKER | The Art of Resurrection - Among the Stars -",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9784757579002-L.jpg",
+        "initials":  "SE",
+        "isbn13":  "9784757579002",
+        "isbn10":  "4757579004",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "fantasy",
+                     "props"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  75,
+        "publisher":  "スクウェア・エニックス",
+        "title":  "FINAL FANTASY XIV: STORMBLOOD | Art of the Revolution - Western Memories - (SE-MOOK) [ART BOOK - JAPANESE EDITION]",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9784757556140-L.jpg",
+        "initials":  "スエ",
+        "isbn13":  "9784757556140",
+        "isbn10":  "4757556144",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "fantasy",
+                     "props"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  76,
+        "publisher":  "Chronicle Books",
+        "title":  "The Spider-Man Chronicles: The Art and Making of Spider-Man 3",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9780811857772-L.jpg",
+        "initials":  "CB",
+        "isbn13":  "9780811857772",
+        "isbn10":  "0811857778",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "props",
+                     "superhero"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  77,
+        "publisher":  "Ablaze",
+        "title":  "Indie Games",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9781950912018-L.jpg",
+        "initials":  "ABL",
+        "isbn13":  "9781950912018",
+        "isbn10":  "1950912019",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "props"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  78,
+        "publisher":  "Cherche midi",
+        "title":  "GAMELOFT - PLAY TIME / the first 20 years of gameloft",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9782749167350-L.jpg",
+        "initials":  "CM",
+        "isbn13":  "9782749167350",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "props"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  79,
+        "publisher":  "Titan Books Limited",
+        "title":  "The Art of Dead Space",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9781781164266-L.jpg",
+        "initials":  "TB",
+        "isbn13":  "9781781164266",
+        "isbn10":  "1781164266",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "horror",
+                     "props",
+                     "sci-fi"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  80,
+        "publisher":  "Mana Books",
+        "title":  "L\u0027 art de Assassin\u0027s Creed Shadows - Artbook officiel",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9791035506315-L.jpg",
+        "initials":  "MB",
+        "isbn13":  "9791035506315",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "historical",
+                     "props",
+                     "realistic"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  81,
+        "publisher":  "Titan Books Ltd",
+        "title":  "Shadow of the Tomb Raider: The Official Art Book",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9781785659492-L.jpg",
+        "initials":  "TB",
+        "isbn13":  "9781785659492",
+        "isbn10":  "1785659499",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "props",
+                     "realistic"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  82,
+        "publisher":  "Panini",
+        "title":  "L\u0027 art de Far Cry 6",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9791039102117-L.jpg",
+        "initials":  "PAN",
+        "isbn13":  "9791039102117",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "props",
+                     "realistic"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  83,
+        "publisher":  "DARK HORSE",
+        "title":  "The art of Sackboy, a big adventure",
+        "color":  "#6ea8ff",
+        "cover":  "",
+        "initials":  "DH",
+        "isbn13":  "",
+        "isbn10":  "",
+        "tags":  [
+                     "cartoon",
+                     "character",
+                     "environment",
+                     "props",
+                     "realistic",
+                     "stylized"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  84,
+        "publisher":  "EASTAR",
+        "title":  "Labyrinth Artbook",
+        "color":  "#6ea8ff",
+        "cover":  "",
+        "initials":  "EAS",
+        "isbn13":  "",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "fantasy",
+                     "props"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  85,
+        "publisher":  "7 FALLEN",
+        "title":  "Legendary Artworks 7 Fallen",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9782493395009-L.jpg",
+        "initials":  "7F",
+        "isbn13":  "9782493395009",
+        "isbn10":  "",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "fantasy",
+                     "props",
+                     "stylized"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  86,
+        "publisher":  "Multiplayer Edizioni",
+        "title":  "The art of uncharted 4. Fine di un ladro. Ediz. illustrata",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9788866312345-L.jpg",
+        "initials":  "ME",
+        "isbn13":  "9788866312345",
+        "isbn10":  "8866312347",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "props",
+                     "realistic"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  87,
+        "publisher":  "Dark Horse Books",
+        "title":  "The Art of Cuphead",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9781506713205-L.jpg",
+        "initials":  "DH",
+        "isbn13":  "9781506713205",
+        "isbn10":  "1506713203",
+        "tags":  [
+                     "cartoon",
+                     "character",
+                     "environment",
+                     "props",
+                     "stylized"
+                 ],
+        "libraryType":  "artbook"
+    },
+    {
+        "id":  88,
+        "publisher":  "Larian Studios",
+        "title":  "Larian Studios Artwork from Baldur\u0027s Gate 3 (Hardcover Art Book) Fantasy Gaming Collection",
+        "color":  "#6ea8ff",
+        "cover":  "https://covers.openlibrary.org/b/isbn/9781838283421-L.jpg",
+        "initials":  "LS",
+        "isbn13":  "9781838283421",
+        "isbn10":  "1838283420",
+        "tags":  [
+                     "character",
+                     "environment",
+                     "fantasy",
+                     "props",
+                     "stylized"
+                 ],
+        "libraryType":  "artbook"
     }
 ]

@@ -1082,12 +1082,34 @@ function rerollFocus() {
   renderMission(currentMission);
   renderBrief(currentMission);
 }
+function restoreSavedSession(sessionId) {
+  const session = saved.find(item => String(item.id) === String(sessionId));
+  if (!session?.brief) return;
+  const liveBook = getCurrentBookById(session.brief.book?.id) || session.brief.book || null;
+  const restoredBrief = { ...session.brief, book: liveBook };
+  window.latestBrief = restoredBrief;
+  selectedBook = liveBook;
+  currentMission = restoredBrief.mode === "random" ? restoredBrief : null;
+  if (restoredBrief.mode === "manual") {
+    manualSkillFocus.value = restoredBrief.skillFocus || manualSkillFocus.value;
+    creationTypeSelect.value = restoredBrief.creationType || creationTypeSelect.value;
+    document.getElementById("manualType").value = restoredBrief.type || document.getElementById("manualType").value;
+    document.getElementById("manualDifficulty").value = restoredBrief.difficulty || document.getElementById("manualDifficulty").value;
+    document.getElementById("manualTime").value = restoredBrief.time || document.getElementById("manualTime").value;
+    document.getElementById("manualPage").value = restoredBrief.page || document.getElementById("manualPage").value;
+  }
+  setMode(restoredBrief.mode === "manual" ? "manual" : "random");
+  renderLibrary();
+  renderSelectedBook();
+  if (restoredBrief.mode === "random") renderMission(restoredBrief);
+  renderBrief(restoredBrief);
+}
 function renderSaved() {
   if (!saved.length) {
     savedSessions.innerHTML = `<div class="mini-card"><h4>No saved sessions</h4><p>Your latest practice runs will appear here.</p></div>`;
     return;
   }
-  savedSessions.innerHTML = saved.slice(0, 12).map(item => `<div class="session-item"><strong>${item.title}</strong><span>${item.date} / ${item.mode} / ${item.skillFocusLabel || item.type}</span></div>`).join("");
+  savedSessions.innerHTML = saved.slice(0, 12).map(item => `<button class="session-item" data-session-id="${item.id}" type="button"><strong>${item.title}</strong><span>${item.date} / ${item.mode} / ${item.skillFocusLabel || item.type}</span></button>`).join("");
 }
 function saveCurrentBrief() {
   if (!window.latestBrief) return;
@@ -1100,7 +1122,8 @@ function saveCurrentBrief() {
     skillFocus: window.latestBrief.skillFocus,
     skillFocusLabel: window.latestBrief.skillFocusLabel,
     difficulty: window.latestBrief.difficulty,
-    summary: window.latestBrief.objective
+    summary: window.latestBrief.objective,
+    brief: JSON.parse(JSON.stringify(window.latestBrief))
   });
   localStorage.setItem("artbook_training_sessions", JSON.stringify(saved));
   renderSaved();
@@ -1441,6 +1464,11 @@ document.getElementById("saveSessionBtn").addEventListener("click", saveCurrentB
 document.getElementById("exportBtn").addEventListener("click", exportSessions);
 document.getElementById("exportLibraryBtn").addEventListener("click", exportLibraryData);
 document.getElementById("clearBtn").addEventListener("click", clearSessions);
+savedSessions.addEventListener("click", event => {
+  const item = event.target.closest("[data-session-id]");
+  if (!item) return;
+  restoreSavedSession(item.getAttribute("data-session-id"));
+});
 addBookBtn.addEventListener("click", openAddBookModal);
 missionCard.addEventListener("click", async event => {
   const menuBtn = event.target.closest("[data-mission-cover-menu-btn]");

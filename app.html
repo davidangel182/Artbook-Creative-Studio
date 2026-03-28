@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -10,14 +10,10 @@
 <body>
   <div class="app">
     <aside class="sidebar">
-      <div class="brand">
-        <h1>Artbook & Study Library</h1>
-        <p>Creative reference system</p>
-      </div>
 
       <div class="search">
         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
-        <input id="searchInput" type="text" placeholder="Search books, publishers, or tags..." />
+        <input id="searchInput" type="text" placeholder="Search books, studios, or tags..." />
       </div>
 
       <div class="sidebar-actions">
@@ -63,6 +59,7 @@
       </div>
 
       <div class="status-box hidden" id="coverStatus"></div>
+      <button class="mobile-library-toggle" id="mobileLibraryToggle" type="button" aria-expanded="false">Browse Library</button>
       <div class="library" id="library"></div>
     </aside>
 
@@ -70,24 +67,24 @@
       <header class="header">
         <div class="header-main">
           <div class="header-copy">
-            <div class="eyebrow" id="headerEyebrow">Select a book</div>
+            <div class="eyebrow" id="headerEyebrow">Training first</div>
             <h2 id="headerTitle">Artbook & Study Library</h2>
-            <div class="desc" id="headerDesc">Your visual reference system and idea generator. Choose a book or use the training roulette to receive a challenge with a book, a plausible page, and a focused improvement goal.</div>
+            <div class="desc" id="headerDesc">Roll focused practice briefs, then refine them with your own references.</div>
           </div>
           <div class="header-tools">
             <div class="mode-row">
-              <button class="mode-btn active" id="manualModeBtn" type="button">
-                <span class="mode-icon">✏️</span>
-                <span class="mode-copy">
-                  <span class="mode-title">Manual Mode</span>
-                  <span class="mode-desc">Choose the book, page, and focus</span>
-                </span>
-              </button>
-              <button class="mode-btn" id="randomModeBtn" type="button">
-                <span class="mode-icon">🎲</span>
+              <button class="mode-btn active" id="randomModeBtn" type="button">
+                <span class="mode-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"></rect><path d="M9 9h.01"></path><path d="M15 9h.01"></path><path d="M9 15h.01"></path><path d="M15 15h.01"></path></svg></span>
                 <span class="mode-copy">
                   <span class="mode-title">Training Mode</span>
-                  <span class="mode-desc">Roulette with book, page, and twist</span>
+                  <span class="mode-desc">Daily challenge from your library</span>
+                </span>
+              </button>
+              <button class="mode-btn" id="manualModeBtn" type="button">
+                <span class="mode-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"></path><path d="M7 16l8-8 2 2-8 8H7v-2z"></path><path d="M14 7l2 2"></path></svg></span>
+                <span class="mode-copy">
+                  <span class="mode-title">Manual Mode</span>
+                  <span class="mode-desc">Choose the exact page yourself</span>
                 </span>
               </button>
             </div>
@@ -96,123 +93,170 @@
       </header>
 
       <section class="content">
-        <div id="manualMode" class="view active">
-          <div class="manual-grid">
-            <div class="panel">
-              <div class="panel-title">Exercise Setup</div>
-              <div class="field-grid">
-                <div class="field">
-                  <label>Page</label>
-                  <input id="manualPage" type="number" min="1" placeholder="e.g. 42" />
-                </div>
-                <div class="field">
-                  <label>Available Time</label>
-                  <select id="manualTime">
-                    <option value="30 min">30 min</option>
-                    <option value="45 min">45 min</option>
-                    <option value="1 hour" selected>1 hour</option>
-                    <option value="2 hours">2 hours</option>
-                  </select>
-                </div>
-                <div class="field">
-                  <label>Type</label>
-                  <select id="manualType">
-                    <option value="character">character</option>
-                    <option value="environment">environment</option>
-                    <option value="props">props</option>
-                    <option value="ui">ui</option>
-                    <option value="creature">creature</option>
-                    <option value="keyart">keyart</option>
-                  </select>
-                </div>
-                <div class="field">
-                  <label>Difficulty</label>
-                  <select id="manualDifficulty">
-                    <option value="easy">easy</option>
-                    <option value="medium" selected>medium</option>
-                    <option value="hard">hard</option>
-                  </select>
-                </div>
-                <div class="field full">
-                  <label>Improvement Focus</label>
-                  <div class="chips" id="goalChips"></div>
-                </div>
-                <div class="field full">
-                  <label>Optional Notes</label>
-                  <textarea id="manualNotes" placeholder="Example: I want something useful for my portfolio, or to practice silhouette clarity and color."></textarea>
-                </div>
-              </div>
-              <div class="actions">
-                <button class="btn primary" id="generateManualBtn" type="button">Generate Brief</button>
-                <button class="btn ghost" id="useSelectedPageBtn" type="button">Suggest Page</button>
-              </div>
+  <div id="randomMode" class="view active random-stack">
+    <div class="panel hero-challenge training-hero-panel">
+      <div class="panel-title">Training Mode</div>
+      <div class="mission-card training-card" id="missionCard">
+        <div class="mission-top">
+          <div class="mission-book">
+            <div class="book-thumb" style="background:linear-gradient(135deg, rgba(255,122,198,0.28), rgba(124,58,237,0.28)); color: var(--accent-2);"><span>AI</span></div>
+            <div>
+              <h3 class="mission-title">Press Start Training</h3>
+              <div class="mission-sub">The app will roll a book, page, skill focus, and creation direction.</div>
             </div>
-
-            <div class="panel">
-              <div class="panel-title">Selected Book</div>
-              <div id="selectedBookCard">
-                <div class="mini-card">
-                  <h4>No book selected</h4>
-                  <p>Select a book in the left column. Then you can generate a manual exercise from that book.</p>
-                </div>
-              </div>
-              <div class="mini-card">
-                <h4>How Page Suggestions Work</h4>
-                <p>Because the app does not analyze the actual content of each book, it uses plausible page ranges based on the exercise type: characters earlier, environments in the middle, props and UI later, and key art toward the end.</p>
-              </div>
-            </div>
+          </div>
+          <div class="mission-page">
+            <strong>-</strong>
+            <span>page</span>
           </div>
         </div>
+        <div class="tags" id="missionTags"></div>
+      </div>
+      <div class="actions training-hero-actions">
+        <button class="btn primary training-start-btn" id="rollBtn" type="button">Start Training</button>
+        <button class="btn" id="rerollBookBtn" type="button">Another Book</button>
+        <button class="btn" id="rerollTwistBtn" type="button">Another Focus</button>
+        <button class="btn ghost" id="saveSessionBtn" type="button">Save Session</button>
+      </div>
+    </div>
 
-        <div id="randomMode" class="view hidden">
-          <div class="panel hero-challenge">
-            <div class="panel-title">Training Mode</div>
-            <div class="mission-card" id="missionCard">
-              <div class="mission-top">
-                <div class="mission-book">
-                  <div class="book-thumb" style="background:linear-gradient(135deg, rgba(255,122,198,0.28), rgba(124,58,237,0.28)); color: var(--accent-2);"><span>AI</span></div>
-                  <div>
-                    <h3 class="mission-title">Press "Start Training"</h3>
-                    <div class="mission-sub">The app will choose the book, page, type, and goal.</div>
-                  </div>
-                </div>
-                <div class="mission-page">
-                  <strong>-</strong>
-                  <span>page</span>
-                </div>
-              </div>
-              <div class="tags" id="missionTags"></div>
+
+    <div class="panel image-panel hidden">
+      <div class="panel-title">Image Reference</div>
+      <div class="image-panel-copy">Upload an image or take a photo to generate a visual practice brief from what you are seeing.</div>
+      <div class="upload-box" id="referenceDropZone" tabindex="0">
+        <input class="hidden" id="referenceImageInput" type="file" accept="image/*" />
+        <input class="hidden" id="referenceCameraInput" type="file" accept="image/*" capture="environment" />
+        <div class="upload-icon">^</div>
+        <div class="upload-title">Click to upload image or drag it here</div>
+        <div class="upload-subtitle">You can use a screenshot, a page photo, or any visual reference.</div>
+        <div class="actions upload-actions">
+          <button class="btn" id="pickReferenceBtn" type="button">Upload Image</button>
+          <button class="btn ghost" id="cameraReferenceBtn" type="button">Take Photo</button>
+          <button class="btn ghost hidden" id="clearReferenceBtn" type="button">Clear</button>
+        </div>
+      </div>
+      <div class="image-preview hidden" id="referencePreview">
+        <img id="referencePreviewImg" alt="Reference preview" />
+        <div class="image-preview-copy">
+          <strong id="referencePreviewName">Reference image ready</strong>
+          <span id="referencePreviewMeta">Use it to generate a brief with image analysis.</span>
+        </div>
+      </div>
+      <div class="actions" style="margin-top:14px;">
+        <button class="btn primary" id="generateImageBriefBtn" type="button">Generate Brief From Image</button>
+      </div>
+      <div class="status-box hidden image-brief-status" id="imageBriefStatus"></div>
+      <div class="image-brief-prompt hidden" id="imageBriefPrompt"></div>
+    </div>
+
+  </div>
+  <div id="manualMode" class="view hidden">
+    <div class="manual-grid">
+      <div>
+        <div class="panel practice-panel">
+          <div class="panel-title">Practice Setup</div>
+          <div class="field-grid compact-grid">
+            <div class="field">
+              <label>Skill Focus</label>
+              <select id="manualSkillFocus"></select>
             </div>
-            <div class="actions">
-              <button class="btn primary" id="rollBtn" type="button">🎲 Start Training</button>
-              <button class="btn" id="rerollBookBtn" type="button">Another Book</button>
-              <button class="btn" id="rerollTwistBtn" type="button">Another Twist</button>
-              <button class="btn ghost" id="saveSessionBtn" type="button">Save Session</button>
+            <div class="field">
+              <label>Creation Type</label>
+              <select id="creationTypeSelect"></select>
             </div>
+            <div class="field">
+              <label>Piece Type</label>
+              <select id="manualType">
+                <option value="character">character</option>
+                <option value="environment">environment</option>
+                <option value="props">props</option>
+                <option value="ui">ui</option>
+                <option value="creature">creature</option>
+                <option value="keyart">keyart</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Difficulty</label>
+              <select id="manualDifficulty">
+                <option value="easy">easy</option>
+                <option value="medium" selected>medium</option>
+                <option value="hard">hard</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Available Time</label>
+              <select id="manualTime">
+                <option value="30 min">30 min</option>
+                <option value="45 min">45 min</option>
+                <option value="1 hour" selected>1 hour</option>
+                <option value="2 hours">2 hours</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Page</label>
+              <input id="manualPage" type="number" min="1" placeholder="e.g. 42" />
+            </div>
+            <div class="field full">
+              <label>Elements to Explore</label>
+              <div class="chips multi-grid" id="exploreChips"></div>
+            </div>
+            <div class="field full">
+              <label>Medium / Tool</label>
+              <div class="chips multi-grid" id="toolChips"></div>
+            </div>
+            <div class="field full">
+              <label>Notes</label>
+              <textarea id="manualNotes" placeholder="Optional note for today's practice."></textarea>
+            </div>
+          </div>
+          <div class="actions">
+            <button class="btn primary" id="generateManualBtn" type="button">Generate Brief</button>
+            <button class="btn ghost" id="useSelectedPageBtn" type="button">Suggest Page</button>
           </div>
         </div>
+      </div>
 
-        <div class="output-grid">
-          <div class="panel brief">
-            <div class="panel-title">Generated Brief</div>
-            <div id="briefOutput">
-              <div class="mini-card">
-                <h4>Your exercise will appear here</h4>
-                <p>You can work in manual mode by selecting a book, or use training mode to receive a random challenge. You can also copy a ready prompt into ChatGPT to expand the brief.</p>
-              </div>
+      <div>
+        <div class="panel">
+          <div class="panel-title">Selected Book</div>
+          <div id="selectedBookCard">
+            <div class="mini-card">
+              <h4>No book selected</h4>
+              <p>Choose a book from the library to start.</p>
             </div>
           </div>
-
-          <div class="panel">
-            <div class="panel-title">Saved Sessions</div>
-            <div class="sessions" id="savedSessions"></div>
-            <div class="actions" style="margin-top:14px;">
-              <button class="btn" id="exportBtn" type="button">Export JSON</button>
-              <button class="btn ghost" id="clearBtn" type="button">Clear History</button>
-            </div>
+          <div class="mini-card">
+            <h4>Library Grouping</h4>
+            <p>Books are grouped by company/studio when available from your Libib data.</p>
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+
+  <div class="output-grid">
+    <div class="panel brief">
+      <div class="panel-title">Generated Brief</div>
+      <div id="briefOutput">
+        <div class="mini-card">
+          <h4>Ready for practice</h4>
+          <p>Roll a training brief or switch to manual mode.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Saved Sessions</div>
+      <div class="sessions" id="savedSessions"></div>
+      <div class="actions" style="margin-top:14px;">
+        <button class="btn" id="exportBtn" type="button">Export Sessions</button>
+        <button class="btn" id="exportLibraryBtn" type="button">Export Library JSON</button>
+        <button class="btn ghost" id="clearBtn" type="button">Clear History</button>
+      </div>
+    </div>
+  </div>
+</section>
     </main>
   </div>
 
@@ -224,7 +268,7 @@
           <div class="modal-kicker">Library</div>
           <h3 id="modalTitle">Add New Book</h3>
         </div>
-        <button class="modal-close" id="closeModalBtn" aria-label="Close" type="button">×</button>
+        <button class="modal-close" id="closeModalBtn" aria-label="Close" type="button">�</button>
       </div>
 
       <div class="field-grid">
@@ -275,14 +319,14 @@
           <div class="chips" id="bookTagChips"></div>
         </div>
         <div class="field full">
-          <label>Optional Notes</label>
-          <textarea id="newBookNotes" placeholder="Example: ideal for stylized characters and colorful key art."></textarea>
+          <label>Notes</label>
+          <textarea id="newBookNotes" placeholder="Optional note about this book."></textarea>
         </div>
       </div>
 
       <div class="mini-card" id="newBookPreview">
         <h4>Preview</h4>
-        <p>Fill in the fields to preview how it will appear in the library.</p>
+        <p>Fill in the fields to preview the library card.</p>
       </div>
 
       <div class="actions">

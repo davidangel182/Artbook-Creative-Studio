@@ -15,7 +15,8 @@
                      "study",
                      "stylized"
                  ],
-        "libraryType":  "study"
+        "libraryType":  "study",
+        "company":  "3dtotal Publishing"
     },
     {
         "id":  2,
@@ -34,7 +35,8 @@
                      "study",
                      "stylized"
                  ],
-        "libraryType":  "study"
+        "libraryType":  "study",
+        "company":  "EYROLLES"
     },
     {
         "id":  3,
@@ -52,7 +54,8 @@
                      "realistic",
                      "study"
                  ],
-        "libraryType":  "study"
+        "libraryType":  "study",
+        "company":  "Sixth \u0026 Spring Books"
     },
     {
         "id":  4,
@@ -70,7 +73,8 @@
                      "realistic",
                      "study"
                  ],
-        "libraryType":  "study"
+        "libraryType":  "study",
+        "company":  "DAIMON"
     },
     {
         "id":  5,
@@ -88,7 +92,8 @@
                      "realistic",
                      "study"
                  ],
-        "libraryType":  "study"
+        "libraryType":  "study",
+        "company":  "EYROLLES"
     },
     {
         "id":  6,
@@ -106,7 +111,8 @@
                      "realistic",
                      "study"
                  ],
-        "libraryType":  "study"
+        "libraryType":  "study",
+        "company":  "EYROLLES"
     },
     {
         "id":  7,
@@ -124,7 +130,8 @@
                      "realistic",
                      "study"
                  ],
-        "libraryType":  "study"
+        "libraryType":  "study",
+        "company":  "EYROLLES"
     },
     {
         "id":  8,
@@ -142,7 +149,8 @@
                      "realistic",
                      "study"
                  ],
-        "libraryType":  "study"
+        "libraryType":  "study",
+        "company":  "EYROLLES"
     },
     {
         "id":  9,
@@ -161,7 +169,8 @@
                      "study",
                      "superhero"
                  ],
-        "libraryType":  "study"
+        "libraryType":  "study",
+        "company":  "EYROLLES"
     },
     {
         "id":  10,
@@ -180,7 +189,8 @@
                      "realistic",
                      "study"
                  ],
-        "libraryType":  "study"
+        "libraryType":  "study",
+        "company":  "EYROLLES"
     },
     {
         "id":  11,
@@ -198,7 +208,8 @@
                      "realistic",
                      "study"
                  ],
-        "libraryType":  "study"
+        "libraryType":  "study",
+        "company":  "EYROLLES"
     },
     {
         "id":  12,
@@ -216,7 +227,8 @@
                      "realistic",
                      "study"
                  ],
-        "libraryType":  "study"
+        "libraryType":  "study",
+        "company":  "TACO"
     },
     {
         "id":  13,
@@ -234,7 +246,8 @@
                      "props",
                      "stylized"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "BLIZZARD"
     },
     {
         "id":  14,
@@ -251,7 +264,8 @@
                      "fantasy",
                      "props"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "SQUARE ENIX"
     },
     {
         "id":  15,
@@ -269,7 +283,8 @@
                      "props",
                      "realistic"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "UBISOFT"
     },
     {
         "id":  16,
@@ -286,7 +301,8 @@
                      "props",
                      "sci-fi"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "UBISOFT"
     },
     {
         "id":  17,
@@ -304,7 +320,8 @@
                      "props",
                      "realistic"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "NAUGHTY DOG"
     },
     {
         "id":  18,
@@ -322,7 +339,8 @@
                      "fantasy",
                      "props"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "FROMSOFTWARE"
     },
     {
         "id":  19,
@@ -340,7 +358,8 @@
                      "realistic",
                      "sci-fi"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "KOJIMA STUDIOS"
     },
     {
         "id":  20,
@@ -359,7 +378,8 @@
                      "stylized",
                      "ui"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "BLIZZARD"
     },
     {
         "id":  21,
@@ -376,7 +396,8 @@
                      "props",
                      "superhero"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "ROCKSTEADY"
     },
     {
         "id":  22,
@@ -394,7 +415,8 @@
                      "props",
                      "realistic"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "SANTA MONICA"
     },
     {
         "id":  23,
@@ -412,7 +434,8 @@
                      "props",
                      "realistic"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "NAUGHTY DOG"
     },
     {
         "id":  24,
@@ -430,7 +453,8 @@
                      "props",
                      "realistic"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "CRYSTAL DYNAMICS"
     },
     {
         "id":  25,
@@ -449,7 +473,8 @@
                      "horror",
                      "props"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "FROMSOFTWARE"
     },
     {
         "id":  26,
@@ -468,7 +493,8 @@
                      "props",
                      "stylized"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "SABOTAGE STUDIO"
     },
     {
         "id":  27,
@@ -487,7 +513,8 @@
                      "stylized",
                      "ui"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "SUPERCELL"
     },
     {
         "id":  28,
@@ -508,7 +535,8 @@
                      "props",
                      "stylized"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "KONAMI"
     },
     {
         "id":  29,
@@ -526,7 +554,8 @@
                      "fantasy",
                      "props"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "FROMSOFTWARE"
     },
     {
         "id":  30,
@@ -545,7 +574,8 @@
                      "sci-fi",
                      "stylized"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "BLIZZARD"
     },
     {
         "id":  31,
@@ -563,7 +593,8 @@
                      "props",
                      "stylized"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "ARC SYSTEM WORKS"
     },
     {
         "id":  32,
@@ -580,7 +611,8 @@
                      "props",
                      "sci-fi"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "UBISOFT"
     },
     {
         "id":  33,
@@ -597,7 +629,8 @@
                      "props",
                      "superhero"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "ROCKSTEADY"
     },
     {
         "id":  34,
@@ -614,7 +647,8 @@
                      "props",
                      "superhero"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "ROCKSTEADY"
     },
     {
         "id":  35,
@@ -631,7 +665,8 @@
                      "fantasy",
                      "props"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "SQUARE ENIX"
     },
     {
         "id":  36,
@@ -648,7 +683,8 @@
                      "fantasy",
                      "props"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "SQUARE ENIX"
     },
     {
         "id":  37,
@@ -664,7 +700,8 @@
                      "environment",
                      "props"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "CROTEAM"
     },
     {
         "id":  38,
@@ -681,7 +718,8 @@
                      "fantasy",
                      "props"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "ARENANET"
     },
     {
         "id":  39,
@@ -698,7 +736,8 @@
                      "props",
                      "realistic"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "UBISOFT"
     },
     {
         "id":  40,
@@ -715,7 +754,8 @@
                      "props",
                      "superhero"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "ROCKSTEADY"
     },
     {
         "id":  41,
@@ -732,7 +772,8 @@
                      "props",
                      "realistic"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "UBISOFT"
     },
     {
         "id":  42,
@@ -749,7 +790,8 @@
                      "props",
                      "realistic"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "UBISOFT"
     },
     {
         "id":  43,
@@ -766,7 +808,8 @@
                      "props",
                      "realistic"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "UBISOFT"
     },
     {
         "id":  44,
@@ -783,7 +826,8 @@
                      "props",
                      "sci-fi"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "QUANTIC DREAM"
     },
     {
         "id":  45,
@@ -799,7 +843,8 @@
                      "environment",
                      "props"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "MICROSOFT"
     },
     {
         "id":  46,
@@ -818,7 +863,8 @@
                      "props",
                      "stylized"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "THQ"
     },
     {
         "id":  47,
@@ -835,7 +881,8 @@
                      "props",
                      "superhero"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "INSOMNIAC"
     },
     {
         "id":  48,
@@ -853,7 +900,8 @@
                      "props",
                      "ui"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "SQUARE ENIX"
     },
     {
         "id":  49,
@@ -872,7 +920,8 @@
                      "realistic",
                      "stylized"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "NINTENDO"
     },
     {
         "id":  50,
@@ -891,7 +940,8 @@
                      "props",
                      "stylized"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "SQUARE ENIX"
     },
     {
         "id":  51,
@@ -908,7 +958,8 @@
                      "fantasy",
                      "props"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "SQUARE ENIX"
     },
     {
         "id":  52,
@@ -926,7 +977,8 @@
                      "props",
                      "stylized"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "GORILLAZ"
     },
     {
         "id":  53,
@@ -946,7 +998,8 @@
                      "stylized",
                      "ui"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "miHoyo"
     },
     {
         "id":  54,
@@ -963,7 +1016,8 @@
                      "props",
                      "superhero"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "EIDOS"
     },
     {
         "id":  55,
@@ -983,7 +1037,8 @@
                      "props",
                      "stylized"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "BLIZZARD"
     },
     {
         "id":  56,
@@ -1003,7 +1058,8 @@
                      "props",
                      "stylized"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "BLIZZARD"
     },
     {
         "id":  57,
@@ -1022,7 +1078,8 @@
                      "props",
                      "stylized"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "BLIZZARD"
     },
     {
         "id":  58,
@@ -1041,7 +1098,8 @@
                      "realistic",
                      "stylized"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "BLIZZARD"
     },
     {
         "id":  59,
@@ -1060,7 +1118,8 @@
                      "realistic",
                      "stylized"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "BLIZZARD"
     },
     {
         "id":  60,
@@ -1078,7 +1137,8 @@
                      "fantasy",
                      "props"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "KOMAMI"
     },
     {
         "id":  61,
@@ -1097,7 +1157,8 @@
                      "realistic",
                      "sci-fi"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "KOJIMA STUDIOS"
     },
     {
         "id":  62,
@@ -1115,7 +1176,8 @@
                      "fantasy",
                      "props"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "ELECTRONIC ARTS"
     },
     {
         "id":  63,
@@ -1132,7 +1194,8 @@
                      "fantasy",
                      "props"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "SHIRO GAMES"
     },
     {
         "id":  64,
@@ -1151,7 +1214,8 @@
                      "sci-fi",
                      "stylized"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "BLIZZARD"
     },
     {
         "id":  65,
@@ -1170,7 +1234,8 @@
                      "props",
                      "realistic"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "UBISOFT"
     },
     {
         "id":  66,
@@ -1189,7 +1254,8 @@
                      "props",
                      "realistic"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "UBISOFT"
     },
     {
         "id":  67,
@@ -1207,7 +1273,8 @@
                      "props",
                      "stylized"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "CARTOON NETWORK"
     },
     {
         "id":  68,
@@ -1224,7 +1291,8 @@
                      "fantasy",
                      "props"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "SQUARE ENIX"
     },
     {
         "id":  69,
@@ -1241,7 +1309,8 @@
                      "fantasy",
                      "props"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "SQUARE ENIX"
     },
     {
         "id":  70,
@@ -1258,7 +1327,8 @@
                      "fantasy",
                      "props"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "SQUARE ENIX"
     },
     {
         "id":  71,
@@ -1275,7 +1345,8 @@
                      "fantasy",
                      "props"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "SQUARE ENIX"
     },
     {
         "id":  72,
@@ -1292,7 +1363,8 @@
                      "fantasy",
                      "props"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "SQUARE ENIX"
     },
     {
         "id":  73,
@@ -1309,7 +1381,8 @@
                      "fantasy",
                      "props"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "SQUARE ENIX"
     },
     {
         "id":  74,
@@ -1326,7 +1399,8 @@
                      "fantasy",
                      "props"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "SQUARE ENIX"
     },
     {
         "id":  75,
@@ -1343,7 +1417,8 @@
                      "fantasy",
                      "props"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "SQUARE ENIX"
     },
     {
         "id":  76,
@@ -1360,7 +1435,8 @@
                      "props",
                      "superhero"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "MARVEL COMICS"
     },
     {
         "id":  77,
@@ -1376,7 +1452,8 @@
                      "environment",
                      "props"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "ABLAZE"
     },
     {
         "id":  78,
@@ -1392,7 +1469,8 @@
                      "environment",
                      "props"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "GAMELOFT"
     },
     {
         "id":  79,
@@ -1410,7 +1488,8 @@
                      "props",
                      "sci-fi"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "ELECTRONIC ARTS"
     },
     {
         "id":  80,
@@ -1428,7 +1507,8 @@
                      "props",
                      "realistic"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "UBISOFT"
     },
     {
         "id":  81,
@@ -1445,7 +1525,8 @@
                      "props",
                      "realistic"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "CRYSTAL DYNAMICS"
     },
     {
         "id":  82,
@@ -1462,7 +1543,8 @@
                      "props",
                      "realistic"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "UBISOFT"
     },
     {
         "id":  83,
@@ -1481,7 +1563,8 @@
                      "realistic",
                      "stylized"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "SUMO DIGITAL"
     },
     {
         "id":  84,
@@ -1498,7 +1581,8 @@
                      "fantasy",
                      "props"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "AWAKEN REALMS"
     },
     {
         "id":  85,
@@ -1516,7 +1600,8 @@
                      "props",
                      "stylized"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "7FALLEN"
     },
     {
         "id":  86,
@@ -1533,7 +1618,8 @@
                      "props",
                      "realistic"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "NAUGHTY DOG"
     },
     {
         "id":  87,
@@ -1551,7 +1637,8 @@
                      "props",
                      "stylized"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "STUDIO MDHR"
     },
     {
         "id":  88,
@@ -1569,6 +1656,7 @@
                      "props",
                      "stylized"
                  ],
-        "libraryType":  "artbook"
+        "libraryType":  "artbook",
+        "company":  "LARIAN STUDIOS"
     }
 ]

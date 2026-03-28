@@ -611,14 +611,19 @@ function applyImportedBookData(parsed) {
 function readManualCovers() { return parseStoredJson(MANUAL_COVER_KEY, {}); }
 function writeManualCovers(covers) { localStorage.setItem(MANUAL_COVER_KEY, JSON.stringify(covers)); }
 function getCurrentBookById(id) { return books.find(book => book.id === id) || null; }
-function applySelectedBookCover(coverUrl) {
-  if (!selectedBook) return;
-  const book = getCurrentBookById(selectedBook.id);
+function applyBookCoverById(bookId, coverUrl) {
+  const book = getCurrentBookById(bookId);
   if (!book) return;
   book.cover = coverUrl;
-  selectedBook = book;
+  if (selectedBook?.id === bookId) selectedBook = book;
+  if (currentMission?.book?.id === bookId) currentMission.book = book;
   renderLibrary();
   renderSelectedBook();
+  if (currentMission?.book?.id === bookId) renderMission(currentMission);
+}
+function applySelectedBookCover(coverUrl) {
+  if (!selectedBook) return;
+  applyBookCoverById(selectedBook.id, coverUrl);
 }
 function readFileAsDataUrl(file) {
   return new Promise((resolve, reject) => {
@@ -628,8 +633,8 @@ function readFileAsDataUrl(file) {
     reader.readAsDataURL(file);
   });
 }
-async function handleSelectedCoverUpload(file) {
-  if (!selectedBook || !file) return;
+async function handleBookCoverUpload(bookId, file) {
+  if (!bookId || !file) return;
   if (!file.type.startsWith("image/")) {
     alert("Please upload an image file.");
     return;
@@ -640,9 +645,13 @@ async function handleSelectedCoverUpload(file) {
   }
   const imageDataUrl = await readFileAsDataUrl(file);
   const manualCovers = readManualCovers();
-  manualCovers[selectedBook.id] = imageDataUrl;
+  manualCovers[bookId] = imageDataUrl;
   writeManualCovers(manualCovers);
-  applySelectedBookCover(imageDataUrl);
+  applyBookCoverById(bookId, imageDataUrl);
+}
+async function handleSelectedCoverUpload(file) {
+  if (!selectedBook) return;
+  await handleBookCoverUpload(selectedBook.id, file);
 }
 function canUseImageUrl(url) {
   const normalized = normalizeCoverUrl(url);
@@ -662,8 +671,8 @@ function canUseImageUrl(url) {
     image.src = normalized;
   });
 }
-async function handleSelectedCoverUrl(url) {
-  if (!selectedBook) return;
+async function handleBookCoverUrl(bookId, url) {
+  if (!bookId) return;
   const normalized = normalizeCoverUrl(url);
   if (!normalized) {
     alert("Please paste a valid image URL.");
@@ -675,9 +684,13 @@ async function handleSelectedCoverUrl(url) {
     return;
   }
   const manualCovers = readManualCovers();
-  manualCovers[selectedBook.id] = normalized;
+  manualCovers[bookId] = normalized;
   writeManualCovers(manualCovers);
-  applySelectedBookCover(normalized);
+  applyBookCoverById(bookId, normalized);
+}
+async function handleSelectedCoverUrl(url) {
+  if (!selectedBook) return;
+  await handleBookCoverUrl(selectedBook.id, url);
 }
 function removeSelectedBookCustomCover() {
   if (!selectedBook) return;
@@ -956,7 +969,16 @@ function renderMission(brief) {
   missionCard.innerHTML = `
     <div class="mission-top">
       <div class="mission-book">
-        ${makeThumbMarkup(brief.book, 54, 72)}
+        <div class="mission-thumb-stack">
+          <button class="mission-thumb-button" data-mission-cover-menu-btn type="button" title="Change book cover">
+            ${makeThumbMarkup(brief.book, 54, 72)}
+          </button>
+          <div class="mission-cover-actions hidden" data-mission-cover-actions>
+            <button class="btn ghost mission-cover-btn" data-mission-cover-upload type="button">Upload</button>
+            <button class="btn ghost mission-cover-btn" data-mission-cover-url type="button">Paste URL</button>
+            <input class="hidden" data-mission-cover-input type="file" accept="image/*" />
+          </div>
+        </div>
         <div>
           <h3 class="mission-title">${brief.book.title}</h3>
           <div class="mission-sub">${brief.book.publisher} / ${brief.skillFocusLabel} / ${typeCopy[brief.type]}</div>
@@ -1408,6 +1430,7 @@ mobileLibraryToggle?.addEventListener("click", () => {
   setMobileLibraryCollapsed(expanded);
 });
 window.addEventListener("resize", syncMobileLibraryState);
+manualModeBtn.addEventListener("click", () => setMode("manual"));
 randomModeBtn.addEventListener("click", () => setMode("random"));
 document.getElementById("generateManualBtn").addEventListener("click", generateManualBrief);
 document.getElementById("useSelectedPageBtn").addEventListener("click", suggestPageForSelected);
@@ -1419,6 +1442,48 @@ document.getElementById("exportBtn").addEventListener("click", exportSessions);
 document.getElementById("exportLibraryBtn").addEventListener("click", exportLibraryData);
 document.getElementById("clearBtn").addEventListener("click", clearSessions);
 addBookBtn.addEventListener("click", openAddBookModal);
+missionCard.addEventListener("click", async event => {
+  const menuBtn = event.target.closest("[data-mission-cover-menu-btn]");
+  const uploadBtn = event.target.closest("[data-mission-cover-upload]");
+  const urlBtn = event.target.closest("[data-mission-cover-url]");
+  const actions = missionCard.querySelector("[data-mission-cover-actions]");
+  if (!menuBtn && !uploadBtn && !urlBtn && actions) actions.classList.add("hidden");
+  if (menuBtn) {
+    actions?.classList.toggle("hidden");
+    return;
+  }
+  if (uploadBtn) {
+    const input = missionCard.querySelector("[data-mission-cover-input]");
+    if (input) input.click();
+    return;
+  }
+  if (urlBtn) {
+    const missionBook = currentMission?.book;
+    if (!missionBook) return;
+    const currentManualCover = readManualCovers()[missionBook.id] || "";
+    const suggestedUrl = currentManualCover && !currentManualCover.startsWith("data:") ? currentManualCover : (missionBook.cover && !String(missionBook.cover).startsWith("data:") ? missionBook.cover : "");
+    const pastedUrl = window.prompt("Paste the direct image URL for this book cover.", suggestedUrl);
+    if (pastedUrl === null) return;
+    try {
+      await handleBookCoverUrl(missionBook.id, pastedUrl);
+      missionCard.querySelector("[data-mission-cover-actions]")?.classList.add("hidden");
+    } catch (error) {
+      alert("That cover URL could not be saved.");
+    }
+  }
+});
+missionCard.addEventListener("change", async event => {
+  const input = event.target.closest("[data-mission-cover-input]");
+  if (!input || !input.files || !input.files[0] || !currentMission?.book) return;
+  try {
+    await handleBookCoverUpload(currentMission.book.id, input.files[0]);
+    missionCard.querySelector("[data-mission-cover-actions]")?.classList.add("hidden");
+  } catch (error) {
+    alert("The selected image could not be used as a cover.");
+  } finally {
+    input.value = "";
+  }
+});
 selectedBookCard.addEventListener("click", async event => {
   const uploadBtn = event.target.closest("[data-upload-cover-btn]");
   const coverUrlBtn = event.target.closest("[data-cover-url-btn]");

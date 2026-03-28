@@ -1236,3 +1236,39 @@
     display: none;
   }
 }
+.mission-thumb-stack {
+  display: grid;
+  gap: 8px;
+  align-items: start;
+}
+.mission-thumb-button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.mission-thumb-button .book-thumb {
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+.mission-thumb-button:hover .book-thumb {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+}
+.mission-cover-actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+  width: 100%;
+}
+.mission-cover-btn {
+  width: 100%;
+  justify-content: center;
+  padding: 6px 10px;
+  font-size: 11px;
+  min-height: auto;
+}
+.mission-cover-btn {
+  padding: 6px 10px;
+  font-size: 11px;
+  min-height: auto;
+}

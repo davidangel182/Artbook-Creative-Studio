@@ -1,0 +1,604 @@
+﻿{
+  "objectives": [
+    {
+      "id": 1,
+      "category": "composition",
+      "domain": ["game-art", "illustration", "ui"],
+      "skills": ["hierarchy", "layout", "readability"],
+      "compatibleFocuses": ["readability", "variation", "quality"],
+      "text": "Improve composition and visual hierarchy"
+    },
+    {
+      "id": 2,
+      "category": "color",
+      "domain": ["game-art", "illustration", "ui"],
+      "skills": ["color", "mood", "contrast"],
+      "compatibleFocuses": ["exploration", "variation", "quality"],
+      "text": "Explore color and mood"
+    },
+    {
+      "id": 3,
+      "category": "character",
+      "domain": ["game-art", "concept-art", "illustration"],
+      "skills": ["shape-language", "silhouette", "appeal"],
+      "compatibleFocuses": ["variation", "exploration", "quality"],
+      "text": "Design stronger character silhouettes"
+    },
+    {
+      "id": 4,
+      "category": "ideation",
+      "domain": ["game-art", "concept-art", "illustration", "ui"],
+      "skills": ["ideation", "speed", "variation"],
+      "compatibleFocuses": ["speed", "variation", "exploration"],
+      "text": "Generate ideas faster and with less overthinking"
+    },
+    {
+      "id": 5,
+      "category": "ui",
+      "domain": ["ui", "game-ui", "graphic-design"],
+      "skills": ["readability", "hierarchy", "consistency"],
+      "compatibleFocuses": ["readability", "quality", "polish"],
+      "text": "Improve game UI clarity and usability"
+    },
+    {
+      "id": 6,
+      "category": "icons",
+      "domain": ["ui", "game-ui", "graphic-design"],
+      "skills": ["simplification", "clarity", "consistency"],
+      "compatibleFocuses": ["readability", "polish", "quality"],
+      "text": "Create clearer and more consistent icon design"
+    },
+    {
+      "id": 7,
+      "category": "materials",
+      "domain": ["game-art", "concept-art", "illustration"],
+      "skills": ["rendering", "materials", "surface"],
+      "compatibleFocuses": ["quality", "polish", "exploration"],
+      "text": "Improve material rendering and surface definition"
+    },
+    {
+      "id": 8,
+      "category": "storytelling",
+      "domain": ["game-art", "concept-art", "illustration"],
+      "skills": ["narrative", "emotion", "staging"],
+      "compatibleFocuses": ["exploration", "quality", "variation"],
+      "text": "Strengthen visual storytelling in a single image"
+    },
+    {
+      "id": 9,
+      "category": "lighting",
+      "domain": ["game-art", "illustration", "concept-art"],
+      "skills": ["lighting", "contrast", "mood"],
+      "compatibleFocuses": ["quality", "exploration", "variation"],
+      "text": "Study lighting to create depth and impact"
+    },
+    {
+      "id": 10,
+      "category": "study",
+      "domain": ["game-art", "illustration", "ui", "graphic-design"],
+      "skills": ["observation", "analysis", "adaptation"],
+      "compatibleFocuses": ["quality", "exploration", "readability"],
+      "text": "Learn intentionally from strong visual references"
+    },
+    {
+      "id": 11,
+      "category": "props",
+      "domain": ["game-art", "concept-art"],
+      "skills": ["function", "worldbuilding", "design"],
+      "compatibleFocuses": ["variation", "quality", "exploration"],
+      "text": "Design props that feel functional and world-specific"
+    },
+    {
+      "id": 12,
+      "category": "style",
+      "domain": ["game-art", "illustration", "graphic-design", "ui"],
+      "skills": ["style", "adaptation", "exploration"],
+      "compatibleFocuses": ["exploration", "variation", "quality"],
+      "text": "Explore visual styles outside your usual approach"
+    }
+  ],
+  "whatToAnalyze": [
+    {
+      "id": 101,
+      "category": "composition",
+      "domain": ["game-art", "illustration", "ui"],
+      "skills": ["hierarchy", "readability"],
+      "compatibleFocuses": ["readability", "quality"],
+      "text": "Focal point clarity"
+    },
+    {
+      "id": 102,
+      "category": "composition",
+      "domain": ["game-art", "illustration", "ui"],
+      "skills": ["layout", "readability"],
+      "compatibleFocuses": ["readability", "variation"],
+      "text": "Readability in the first 3 seconds"
+    },
+    {
+      "id": 103,
+      "category": "composition",
+      "domain": ["game-art", "illustration", "ui"],
+      "skills": ["balance", "layout"],
+      "compatibleFocuses": ["quality", "variation"],
+      "text": "Balance of visual weight"
+    },
+    {
+      "id": 104,
+      "category": "composition",
+      "domain": ["game-art", "illustration", "ui"],
+      "skills": ["layout", "spacing"],
+      "compatibleFocuses": ["readability", "quality"],
+      "text": "Use of negative space"
+    },
+    {
+      "id": 105,
+      "category": "color",
+      "domain": ["game-art", "illustration", "ui"],
+      "skills": ["color", "mood"],
+      "compatibleFocuses": ["exploration", "variation"],
+      "text": "Color temperature"
+    },
+    {
+      "id": 106,
+      "category": "color",
+      "domain": ["game-art", "illustration", "ui"],
+      "skills": ["contrast", "color"],
+      "compatibleFocuses": ["quality", "variation"],
+      "text": "Contrast intensity"
+    },
+    {
+      "id": 107,
+      "category": "color",
+      "domain": ["game-art", "illustration", "ui"],
+      "skills": ["color", "harmony"],
+      "compatibleFocuses": ["exploration", "quality"],
+      "text": "Palette harmony"
+    },
+    {
+      "id": 108,
+      "category": "color",
+      "domain": ["game-art", "illustration"],
+      "skills": ["depth", "color"],
+      "compatibleFocuses": ["quality", "exploration"],
+      "text": "Depth created through color shifts"
+    },
+    {
+      "id": 109,
+      "category": "character",
+      "domain": ["game-art", "concept-art", "illustration"],
+      "skills": ["shape-language", "silhouette"],
+      "compatibleFocuses": ["variation", "quality"],
+      "text": "Silhouette recognition"
+    },
+    {
+      "id": 110,
+      "category": "character",
+      "domain": ["game-art", "concept-art", "illustration"],
+      "skills": ["shape-language", "appeal"],
+      "compatibleFocuses": ["variation", "exploration"],
+      "text": "Shape language choices"
+    },
+    {
+      "id": 111,
+      "category": "character",
+      "domain": ["game-art", "concept-art", "illustration"],
+      "skills": ["proportion", "appeal"],
+      "compatibleFocuses": ["quality", "variation"],
+      "text": "Proportion and exaggeration"
+    },
+    {
+      "id": 112,
+      "category": "character",
+      "domain": ["game-art", "concept-art", "illustration"],
+      "skills": ["personality", "appeal"],
+      "compatibleFocuses": ["exploration", "quality"],
+      "text": "Visual personality"
+    },
+    {
+      "id": 113,
+      "category": "ideation",
+      "domain": ["game-art", "concept-art", "illustration", "ui"],
+      "skills": ["speed", "ideation"],
+      "compatibleFocuses": ["speed", "variation"],
+      "text": "Speed of execution"
+    },
+    {
+      "id": 114,
+      "category": "ideation",
+      "domain": ["game-art", "concept-art", "illustration", "ui"],
+      "skills": ["variation", "ideation"],
+      "compatibleFocuses": ["variation", "exploration"],
+      "text": "Variety of ideas"
+    },
+    {
+      "id": 115,
+      "category": "ideation",
+      "domain": ["game-art", "concept-art", "illustration"],
+      "skills": ["gesture", "flow"],
+      "compatibleFocuses": ["speed", "exploration"],
+      "text": "Gesture and flow"
+    },
+    {
+      "id": 116,
+      "category": "ideation",
+      "domain": ["game-art", "concept-art", "illustration", "ui"],
+      "skills": ["process", "speed"],
+      "compatibleFocuses": ["speed", "exploration"],
+      "text": "Ability to avoid overthinking"
+    },
+    {
+      "id": 117,
+      "category": "ui",
+      "domain": ["ui", "game-ui", "graphic-design"],
+      "skills": ["hierarchy", "readability"],
+      "compatibleFocuses": ["readability", "quality"],
+      "text": "Hierarchy of information"
+    },
+    {
+      "id": 118,
+      "category": "ui",
+      "domain": ["ui", "game-ui", "graphic-design"],
+      "skills": ["readability", "clarity"],
+      "compatibleFocuses": ["readability", "polish"],
+      "text": "Text and element readability"
+    },
+    {
+      "id": 119,
+      "category": "ui",
+      "domain": ["ui", "game-ui", "graphic-design"],
+      "skills": ["spacing", "grouping"],
+      "compatibleFocuses": ["quality", "polish"],
+      "text": "Spacing and grouping"
+    },
+    {
+      "id": 120,
+      "category": "ui",
+      "domain": ["ui", "game-ui", "graphic-design"],
+      "skills": ["consistency", "system-design"],
+      "compatibleFocuses": ["polish", "quality"],
+      "text": "Consistency of components"
+    },
+    {
+      "id": 121,
+      "category": "icons",
+      "domain": ["ui", "game-ui", "graphic-design"],
+      "skills": ["clarity", "simplification"],
+      "compatibleFocuses": ["readability", "quality"],
+      "text": "Legibility at small size"
+    },
+    {
+      "id": 122,
+      "category": "icons",
+      "domain": ["ui", "game-ui", "graphic-design"],
+      "skills": ["simplification", "shape-language"],
+      "compatibleFocuses": ["readability", "variation"],
+      "text": "Shape simplification"
+    },
+    {
+      "id": 123,
+      "category": "icons",
+      "domain": ["ui", "game-ui", "graphic-design"],
+      "skills": ["consistency", "system-design"],
+      "compatibleFocuses": ["polish", "quality"],
+      "text": "Consistency across the icon set"
+    },
+    {
+      "id": 124,
+      "category": "icons",
+      "domain": ["ui", "game-ui", "graphic-design"],
+      "skills": ["clarity", "communication"],
+      "compatibleFocuses": ["readability", "quality"],
+      "text": "Recognizable function at a glance"
+    },
+    {
+      "id": 125,
+      "category": "materials",
+      "domain": ["game-art", "concept-art", "illustration"],
+      "skills": ["rendering", "light"],
+      "compatibleFocuses": ["quality", "polish"],
+      "text": "Light and shadow behavior"
+    },
+    {
+      "id": 126,
+      "category": "materials",
+      "domain": ["game-art", "concept-art", "illustration"],
+      "skills": ["rendering", "edges"],
+      "compatibleFocuses": ["polish", "quality"],
+      "text": "Edge control"
+    },
+    {
+      "id": 127,
+      "category": "materials",
+      "domain": ["game-art", "concept-art", "illustration"],
+      "skills": ["materials", "surface"],
+      "compatibleFocuses": ["quality", "exploration"],
+      "text": "Surface texture"
+    },
+    {
+      "id": 128,
+      "category": "materials",
+      "domain": ["game-art", "concept-art", "illustration"],
+      "skills": ["materials", "clarity"],
+      "compatibleFocuses": ["quality", "polish"],
+      "text": "Material readability"
+    },
+    {
+      "id": 129,
+      "category": "storytelling",
+      "domain": ["game-art", "concept-art", "illustration"],
+      "skills": ["narrative", "staging"],
+      "compatibleFocuses": ["quality", "exploration"],
+      "text": "Narrative clarity"
+    },
+    {
+      "id": 130,
+      "category": "storytelling",
+      "domain": ["game-art", "concept-art", "illustration"],
+      "skills": ["emotion", "narrative"],
+      "compatibleFocuses": ["exploration", "quality"],
+      "text": "Emotion in the image"
+    },
+    {
+      "id": 131,
+      "category": "storytelling",
+      "domain": ["game-art", "concept-art", "illustration"],
+      "skills": ["character-intent", "narrative"],
+      "compatibleFocuses": ["quality", "exploration"],
+      "text": "Character intention"
+    },
+    {
+      "id": 132,
+      "category": "storytelling",
+      "domain": ["game-art", "concept-art", "illustration"],
+      "skills": ["staging", "eye-flow"],
+      "compatibleFocuses": ["readability", "quality"],
+      "text": "Viewer eye direction"
+    },
+    {
+      "id": 133,
+      "category": "lighting",
+      "domain": ["game-art", "concept-art", "illustration"],
+      "skills": ["lighting", "mood"],
+      "compatibleFocuses": ["quality", "exploration"],
+      "text": "Direction of light"
+    },
+    {
+      "id": 134,
+      "category": "lighting",
+      "domain": ["game-art", "concept-art", "illustration"],
+      "skills": ["contrast", "lighting"],
+      "compatibleFocuses": ["quality", "variation"],
+      "text": "Contrast structure"
+    },
+    {
+      "id": 135,
+      "category": "lighting",
+      "domain": ["game-art", "concept-art", "illustration"],
+      "skills": ["mood", "lighting"],
+      "compatibleFocuses": ["exploration", "variation"],
+      "text": "Mood created by lighting"
+    },
+    {
+      "id": 136,
+      "category": "lighting",
+      "domain": ["game-art", "concept-art", "illustration"],
+      "skills": ["depth", "staging"],
+      "compatibleFocuses": ["quality", "readability"],
+      "text": "Separation of planes"
+    },
+    {
+      "id": 137,
+      "category": "study",
+      "domain": ["game-art", "illustration", "ui", "graphic-design"],
+      "skills": ["observation", "composition"],
+      "compatibleFocuses": ["quality", "readability"],
+      "text": "Composition choices"
+    },
+    {
+      "id": 138,
+      "category": "study",
+      "domain": ["game-art", "illustration", "ui", "graphic-design"],
+      "skills": ["observation", "color"],
+      "compatibleFocuses": ["quality", "exploration"],
+      "text": "Color strategy"
+    },
+    {
+      "id": 139,
+      "category": "study",
+      "domain": ["game-art", "illustration", "ui", "graphic-design"],
+      "skills": ["observation", "simplification"],
+      "compatibleFocuses": ["readability", "quality"],
+      "text": "Shape simplification"
+    },
+    {
+      "id": 140,
+      "category": "study",
+      "domain": ["game-art", "illustration", "ui", "graphic-design"],
+      "skills": ["observation", "technique"],
+      "compatibleFocuses": ["quality", "exploration"],
+      "text": "Rendering or execution decisions"
+    },
+    {
+      "id": 141,
+      "category": "props",
+      "domain": ["game-art", "concept-art"],
+      "skills": ["function", "design"],
+      "compatibleFocuses": ["quality", "variation"],
+      "text": "Clarity of function"
+    },
+    {
+      "id": 142,
+      "category": "props",
+      "domain": ["game-art", "concept-art"],
+      "skills": ["worldbuilding", "design"],
+      "compatibleFocuses": ["exploration", "quality"],
+      "text": "Worldbuilding clues"
+    },
+    {
+      "id": 143,
+      "category": "props",
+      "domain": ["game-art", "concept-art"],
+      "skills": ["appeal", "shape-language"],
+      "compatibleFocuses": ["variation", "quality"],
+      "text": "Shape appeal"
+    },
+    {
+      "id": 144,
+      "category": "props",
+      "domain": ["game-art", "concept-art"],
+      "skills": ["materials", "design"],
+      "compatibleFocuses": ["quality", "polish"],
+      "text": "Material definition"
+    },
+    {
+      "id": 145,
+      "category": "style",
+      "domain": ["game-art", "illustration", "graphic-design", "ui"],
+      "skills": ["style", "comparison"],
+      "compatibleFocuses": ["exploration", "variation"],
+      "text": "Differences from your usual style"
+    },
+    {
+      "id": 146,
+      "category": "style",
+      "domain": ["game-art", "illustration", "graphic-design", "ui"],
+      "skills": ["style", "technique"],
+      "compatibleFocuses": ["exploration", "quality"],
+      "text": "New techniques to test"
+    },
+    {
+      "id": 147,
+      "category": "style",
+      "domain": ["game-art", "illustration", "graphic-design", "ui"],
+      "skills": ["style", "shape-language"],
+      "compatibleFocuses": ["variation", "exploration"],
+      "text": "Alternative shape language"
+    },
+    {
+      "id": 148,
+      "category": "style",
+      "domain": ["game-art", "illustration", "graphic-design", "ui"],
+      "skills": ["style", "adaptation"],
+      "compatibleFocuses": ["quality", "exploration"],
+      "text": "What is worth integrating into your workflow"
+    }
+  ],
+  "tasks": [
+    {
+      "id": 201,
+      "category": "composition",
+      "domain": ["game-art", "illustration", "ui"],
+      "skills": ["hierarchy", "layout", "readability"],
+      "compatibleFocuses": ["readability", "variation", "quality"],
+      "difficulty": "easy",
+      "text": "Create 3 black and white thumbnails of the same scene using different compositions."
+    },
+    {
+      "id": 202,
+      "category": "color",
+      "domain": ["game-art", "illustration", "ui"],
+      "skills": ["color", "mood", "contrast"],
+      "compatibleFocuses": ["exploration", "variation", "quality"],
+      "difficulty": "medium",
+      "text": "Recolor one image in 3 different moods: warm, cold, and nocturnal."
+    },
+    {
+      "id": 203,
+      "category": "character",
+      "domain": ["game-art", "concept-art", "illustration"],
+      "skills": ["shape-language", "silhouette", "appeal"],
+      "compatibleFocuses": ["variation", "exploration", "quality"],
+      "difficulty": "medium",
+      "text": "Design 3 versions of the same character using different base shapes."
+    },
+    {
+      "id": 204,
+      "category": "ideation",
+      "domain": ["game-art", "concept-art", "illustration", "ui"],
+      "skills": ["ideation", "speed", "variation"],
+      "compatibleFocuses": ["speed", "variation", "exploration"],
+      "difficulty": "easy",
+      "text": "Create 20 quick sketches in 20 minutes without erasing."
+    },
+    {
+      "id": 205,
+      "category": "ui",
+      "domain": ["ui", "game-ui", "graphic-design"],
+      "skills": ["readability", "hierarchy", "consistency"],
+      "compatibleFocuses": ["readability", "quality", "polish"],
+      "difficulty": "hard",
+      "text": "Redesign a game menu or HUD to improve clarity and visual hierarchy."
+    },
+    {
+      "id": 206,
+      "category": "icons",
+      "domain": ["ui", "game-ui", "graphic-design"],
+      "skills": ["simplification", "clarity", "consistency"],
+      "compatibleFocuses": ["readability", "polish", "quality"],
+      "difficulty": "medium",
+      "text": "Design a set of 10 icons in one consistent visual style."
+    },
+    {
+      "id": 207,
+      "category": "materials",
+      "domain": ["game-art", "concept-art", "illustration"],
+      "skills": ["rendering", "materials", "surface"],
+      "compatibleFocuses": ["quality", "polish", "exploration"],
+      "difficulty": "hard",
+      "text": "Render one object in 3 different materials such as metal, wood, and plastic."
+    },
+    {
+      "id": 208,
+      "category": "storytelling",
+      "domain": ["game-art", "concept-art", "illustration"],
+      "skills": ["narrative", "emotion", "staging"],
+      "compatibleFocuses": ["exploration", "quality", "variation"],
+      "difficulty": "hard",
+      "text": "Create a scene that clearly suggests what happened before and what might happen next."
+    },
+    {
+      "id": 209,
+      "category": "lighting",
+      "domain": ["game-art", "concept-art", "illustration"],
+      "skills": ["lighting", "contrast", "mood"],
+      "compatibleFocuses": ["quality", "exploration", "variation"],
+      "difficulty": "medium",
+      "text": "Paint the same scene with 3 different lighting setups."
+    },
+    {
+      "id": 210,
+      "category": "study",
+      "domain": ["game-art", "illustration", "ui", "graphic-design"],
+      "skills": ["observation", "analysis", "adaptation"],
+      "compatibleFocuses": ["quality", "exploration", "readability"],
+      "difficulty": "medium",
+      "text": "Study a reference and reinterpret it while keeping its main visual idea."
+    },
+    {
+      "id": 211,
+      "category": "props",
+      "domain": ["game-art", "concept-art"],
+      "skills": ["function", "worldbuilding", "design"],
+      "compatibleFocuses": ["variation", "quality", "exploration"],
+      "difficulty": "medium",
+      "text": "Design 5 props from the same universe with a clear function and shared style."
+    },
+    {
+      "id": 212,
+      "category": "style",
+      "domain": ["game-art", "illustration", "graphic-design", "ui"],
+      "skills": ["style", "adaptation", "exploration"],
+      "compatibleFocuses": ["exploration", "variation", "quality"],
+      "difficulty": "hard",
+      "text": "Create one piece in a style that is clearly different from your usual approach."
+    }
+  ],
+  "focuses": [
+    { "id": 301, "text": "speed" },
+    { "id": 302, "text": "quality" },
+    { "id": 303, "text": "exploration" },
+    { "id": 304, "text": "readability" },
+    { "id": 305, "text": "variation" },
+    { "id": 306, "text": "polish" }
+  ]
+}

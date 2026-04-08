@@ -22,6 +22,7 @@ const CUSTOM_BOOKS_KEY = "artbook_custom_books";
 const COVER_CACHE_KEY = "artbook_auto_covers";
 const COVER_MISS_CACHE_KEY = "artbook_cover_misses";
 const coverProbeCache = new Map();
+let practicePool = { objectives: [], whatToAnalyze: [], tasks: [], focuses: [] };
 
 const pageRanges = {
   character: [12, 58],
@@ -147,6 +148,16 @@ const skillTemplates = {
 };
 
 const skillOptions = Object.entries(skillTemplates).map(([value, item]) => ({ value, label: item.label }));
+const skillPracticeCategoryMap = {
+  ui: "ui",
+  "character-design": "character",
+  sketching: "ideation",
+  rendering: "materials",
+  composition: "composition",
+  color: "color",
+  thumbnails: "composition",
+  "animation-short": "storytelling"
+};
 
 const libraryEl = document.getElementById("library");
 const mobileLibraryToggle = document.getElementById("mobileLibraryToggle");
@@ -512,11 +523,13 @@ async function loadBooks() {
   const manualCovers = parseStoredJson(MANUAL_COVER_KEY, {});
   books.forEach(book => {
     book.company = book.company || book.group || book.publisher;
-    if (manualCovers[book.id]) {
-      book.cover = manualCovers[book.id];
+    const manualCover = getManualCover(book, manualCovers);
+    if (manualCover) {
+      book.cover = manualCover;
       return;
     }
-    if (!book.cover && persistedCovers[book.id]) book.cover = persistedCovers[book.id];
+    const cachedCover = getCachedCover(book, persistedCovers);
+    if (!book.cover && cachedCover) book.cover = cachedCover;
   });
 }
 function initBookTags() {
@@ -610,6 +623,29 @@ function applyImportedBookData(parsed) {
 }
 function readManualCovers() { return parseStoredJson(MANUAL_COVER_KEY, {}); }
 function writeManualCovers(covers) { localStorage.setItem(MANUAL_COVER_KEY, JSON.stringify(covers)); }
+function buildManualCoverLookupKeys(book) {
+  return [
+    book.isbn13 ? `isbn13:${book.isbn13}` : "",
+    book.isbn10 ? `isbn10:${book.isbn10}` : "",
+    `title:${normalizeTitleForCompare(book.title)}|publisher:${normalizeTitleForCompare(book.publisher)}`
+  ].filter(Boolean);
+}
+function getManualCover(book, covers = readManualCovers()) {
+  for (const key of buildManualCoverLookupKeys(book)) {
+    if (covers[key]) return covers[key];
+  }
+  return "";
+}
+function setManualCover(book, coverUrl, covers = readManualCovers()) {
+  const normalized = normalizeCoverUrl(coverUrl);
+  if (!normalized) return covers;
+  buildManualCoverLookupKeys(book).forEach(key => { covers[key] = normalized; });
+  return covers;
+}
+function removeManualCover(book, covers = readManualCovers()) {
+  buildManualCoverLookupKeys(book).forEach(key => { delete covers[key]; });
+  return covers;
+}
 function getCurrentBookById(id) { return books.find(book => book.id === id) || null; }
 function applyBookCoverById(bookId, coverUrl) {
   const book = getCurrentBookById(bookId);
@@ -644,8 +680,9 @@ async function handleBookCoverUpload(bookId, file) {
     return;
   }
   const imageDataUrl = await readFileAsDataUrl(file);
-  const manualCovers = readManualCovers();
-  manualCovers[bookId] = imageDataUrl;
+  const book = getCurrentBookById(bookId);
+  if (!book) return;
+  const manualCovers = setManualCover(book, imageDataUrl);
   writeManualCovers(manualCovers);
   applyBookCoverById(bookId, imageDataUrl);
 }
@@ -683,8 +720,9 @@ async function handleBookCoverUrl(bookId, url) {
     alert("That image URL could not be loaded. Try a direct image link that ends in .jpg, .png, or .webp.");
     return;
   }
-  const manualCovers = readManualCovers();
-  manualCovers[bookId] = normalized;
+  const book = getCurrentBookById(bookId);
+  if (!book) return;
+  const manualCovers = setManualCover(book, normalized);
   writeManualCovers(manualCovers);
   applyBookCoverById(bookId, normalized);
 }
@@ -695,12 +733,12 @@ async function handleSelectedCoverUrl(url) {
 function removeSelectedBookCustomCover() {
   if (!selectedBook) return;
   const manualCovers = readManualCovers();
-  delete manualCovers[selectedBook.id];
+  removeManualCover(selectedBook, manualCovers);
   writeManualCovers(manualCovers);
   const book = getCurrentBookById(selectedBook.id);
   if (!book) return;
   const autoCovers = parseStoredJson(COVER_CACHE_KEY, {});
-  book.cover = book.originalCover || autoCovers[book.id] || "";
+  book.cover = book.originalCover || getCachedCover(book, autoCovers) || "";
   selectedBook = book;
   renderLibrary();
   renderSelectedBook();
@@ -831,7 +869,7 @@ function renderSelectedBook() {
     selectedBookCard.innerHTML = `<div class="mini-card"><h4>No book selected</h4><p>Choose a book from the library to start.</p></div>`;
     return;
   }
-  const hasManualCover = !!readManualCovers()[selectedBook.id];
+  const hasManualCover = !!getManualCover(selectedBook);
   const googleCoverSearchUrl = `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(`${selectedBook.title} ${selectedBook.publisher} book cover`)}`;
   const isbnLines = [
     selectedBook.isbn13 ? `<span><strong style="color:var(--text)">ISBN-13:</strong> ${selectedBook.isbn13}</span>` : "",
@@ -875,19 +913,135 @@ function getAnalyzeText(book, template, type, exploreElements = []) {
   if (type === "keyart") dynamicPoints.push("hero focal hierarchy");
   return `Look for ${formatList(dynamicPoints.slice(0, 4))} in ${book.title}. Extract patterns you can reuse without copying the original image.`;
 }
+function normalizePracticeDuration(value) {
+  return String(value || "").toLowerCase().replace(/\s+/g, "");
+}
+function getPracticeCategory(skillFocus) {
+  return skillPracticeCategoryMap[skillFocus] || "study";
+}
+function pickPracticeEntry(collection, category, difficulty = "") {
+  const entries = Array.isArray(collection) ? collection.filter(entry => entry.category === category) : [];
+  if (!entries.length) return null;
+  const scored = entries.map(entry => ({
+    entry,
+    score: difficulty && entry.difficulty === difficulty ? 2 : 0
+  }));
+  scored.sort((a, b) => b.score - a.score);
+  return scored[0]?.entry || entries[0] || null;
+}
+function overlapCount(a = [], b = []) {
+  const left = new Set((Array.isArray(a) ? a : []).map(item => String(item).toLowerCase()));
+  return (Array.isArray(b) ? b : []).filter(item => left.has(String(item).toLowerCase())).length;
+}
+function pickObjectiveEntry(category) {
+  const objectives = Array.isArray(practicePool.objectives) ? practicePool.objectives : [];
+  const sameCategory = objectives.filter(entry => entry.category === category);
+  return pickRandom(sameCategory.length ? sameCategory : objectives);
+}
+function pickCompatibleFocus(objectiveEntry, taskEntry) {
+  const objectiveFocuses = Array.isArray(objectiveEntry?.compatibleFocuses) ? objectiveEntry.compatibleFocuses : [];
+  const taskFocuses = Array.isArray(taskEntry?.compatibleFocuses) ? taskEntry.compatibleFocuses : [];
+  const allowed = objectiveFocuses.filter(item => taskFocuses.includes(item));
+  const focusPool = allowed.length ? allowed : objectiveFocuses;
+  const available = Array.isArray(practicePool.focuses) ? practicePool.focuses.filter(item => focusPool.includes(item.text)) : [];
+  return pickRandom(available.length ? available : (practicePool.focuses.length ? practicePool.focuses : [{ text: "quality" }]));
+}
+function pickTaskForObjective(objectiveEntry) {
+  const tasks = Array.isArray(practicePool.tasks) ? practicePool.tasks.filter(entry => entry.category === objectiveEntry?.category) : [];
+  if (!tasks.length) return null;
+  const scored = tasks.map(entry => ({
+    entry,
+    score: overlapCount(entry.skills, objectiveEntry?.skills) * 2 + overlapCount(entry.domain, objectiveEntry?.domain)
+  }));
+  scored.sort((a, b) => (b.score - a.score) || (Math.random() - 0.5));
+  return scored[0]?.entry || tasks[0] || null;
+}
+function pickAnalyzeEntries(objectiveEntry, focusEntry, desiredCount = 3) {
+  const entries = Array.isArray(practicePool.whatToAnalyze) ? practicePool.whatToAnalyze : [];
+  const focus = String(focusEntry?.text || "").toLowerCase();
+  const scored = entries.map(entry => ({
+    entry,
+    score:
+      (entry.category === objectiveEntry?.category ? 4 : 0) +
+      (overlapCount(entry.skills, objectiveEntry?.skills) * 2) +
+      overlapCount(entry.domain, objectiveEntry?.domain) +
+      ((Array.isArray(entry.compatibleFocuses) && entry.compatibleFocuses.map(item => String(item).toLowerCase()).includes(focus)) ? 2 : 0)
+  }))
+  .filter(item => item.score > 0)
+  .sort((a, b) => (b.score - a.score) || (Math.random() - 0.5));
+  const picked = [];
+  for (const item of scored) {
+    if (picked.some(existing => existing.id === item.entry.id)) continue;
+    picked.push(item.entry);
+    if (picked.length >= desiredCount) break;
+  }
+  if (picked.length < desiredCount) {
+    const fallback = entries.filter(entry => entry.category === objectiveEntry?.category && !picked.some(existing => existing.id === entry.id));
+    for (const entry of fallback) {
+      picked.push(entry);
+      if (picked.length >= desiredCount) break;
+    }
+  }
+  return picked.slice(0, desiredCount);
+}
+async function loadPracticePool() {
+  const response = await fetch("./data/practice-pool.json", { cache: "no-store" });
+  if (!response.ok) throw new Error(`Unable to load practice-pool.json (${response.status})`);
+  const data = await response.json();
+  if (!data || !Array.isArray(data.objectives) || !Array.isArray(data.whatToAnalyze) || !Array.isArray(data.tasks) || !Array.isArray(data.focuses)) {
+    throw new Error("practice-pool.json must contain objectives, whatToAnalyze, tasks, and focuses arrays.");
+  }
+  practicePool = data;
+}
+function buildPracticeObjectiveText(book, page, objectiveEntry, creationTypeLabel, notes) {
+  if (!objectiveEntry) return "";
+  const pageText = page ? ` on page ${page}` : "";
+  return `${objectiveEntry.text}. Use ${book.title}${pageText} as reference. Approach: ${creationTypeLabel}.${notes ? ` Note: ${notes}` : ""}`;
+}
+function buildPracticeAnalyzeText(book, analyzeEntries = [], fallbackText = "") {
+  if (!Array.isArray(analyzeEntries) || !analyzeEntries.length) return fallbackText;
+  return analyzeEntries.slice(0, 3).map(entry => entry.text).join("<br>");
+}
+function buildPracticeTaskText(taskEntry, toolLabel, exploreElements = [], fallbackText = "") {
+  if (!taskEntry) return `${fallbackText}${toolLabel && toolLabel !== "your preferred tool" ? ` Use ${toolLabel}.` : ""}${exploreElements.length ? ` Prioritize ${formatList(exploreElements.slice(0, 3)).toLowerCase()}.` : ""}`;
+  return `${taskEntry.text}${toolLabel && toolLabel !== "your preferred tool" ? ` Use ${toolLabel}.` : ""}${exploreElements.length ? ` Prioritize ${formatList(exploreElements.slice(0, 3)).toLowerCase()}.` : ""}`;
+}
+function formatPracticeCategory(category, fallbackLabel = "") {
+  const labelMap = {
+    composition: "Composition",
+    color: "Color",
+    character: "Character",
+    ideation: "Ideation",
+    ui: "UI",
+    icons: "Icons",
+    materials: "Materials",
+    storytelling: "Storytelling",
+    lighting: "Lighting",
+    study: "Study",
+    props: "Props",
+    style: "Style"
+  };
+  return labelMap[category] || fallbackLabel || "Practice";
+}
+
 function createBrief({ book, page, type, difficulty, time, skillFocus, creationType, exploreElements, tool, notes, mode }) {
   const template = skillTemplates[skillFocus] || skillTemplates["character-design"];
   const creationTypeLabel = getCreationTypeLabel(creationType);
   const toolLabel = tool || "your preferred tool";
   const objectiveBase = template.objective({ book, page, type, difficulty, time, notes });
   const taskBase = template.task({ book, page, type, difficulty, time, notes });
+  const practiceCategory = getPracticeCategory(skillFocus);
+  const objectiveEntry = pickObjectiveEntry(practiceCategory);
+  const taskEntry = pickTaskForObjective(objectiveEntry);
+  const focusEntry = pickCompatibleFocus(objectiveEntry, taskEntry);
+  const analyzeEntries = pickAnalyzeEntries(objectiveEntry, focusEntry, 3);
   return {
     id: Date.now(),
     mode,
     book,
     page,
     type,
-    difficulty,
+    difficulty: taskEntry?.difficulty || difficulty,
     time,
     notes,
     skillFocus,
@@ -895,25 +1049,27 @@ function createBrief({ book, page, type, difficulty, time, skillFocus, creationT
     creationTypeLabel,
     exploreElements,
     tool: toolLabel,
+    category: taskEntry?.category || objectiveEntry?.category || practiceCategory,
+    categoryLabel: formatPracticeCategory(taskEntry?.category || objectiveEntry?.category || practiceCategory, template.label),
+    focus: focusEntry?.text || "quality",
+    duration: time,
     skillFocusLabel: template.label,
-    objective: `${objectiveBase} Approach: ${creationTypeLabel}.`,
-    analyze: getAnalyzeText(book, template, type, exploreElements),
-    task: `${taskBase}${tool ? ` Use ${toolLabel}.` : ""}${exploreElements.length ? ` Prioritize ${formatList(exploreElements.slice(0, 3)).toLowerCase()}.` : ""}`
+    objective: objectiveEntry
+      ? buildPracticeObjectiveText(book, page, objectiveEntry, creationTypeLabel, notes)
+      : `${objectiveBase} Approach: ${creationTypeLabel}.`,
+    analyze: buildPracticeAnalyzeText(book, analyzeEntries, getAnalyzeText(book, template, type, exploreElements)),
+    task: buildPracticeTaskText(taskEntry, toolLabel, exploreElements, taskBase)
   };
 }
 function renderBrief(brief) {
+  const categorySlug = String(brief.category || "practice").toLowerCase().replace(/[^a-z0-9]+/g, "-");
   briefOutput.innerHTML = `
     <div class="brief-meta">
       <strong>${brief.book.title}</strong>
-      <span>${brief.book.publisher}</span>
-      <span>${getLibraryGroupLabel(brief.book)}</span>
-      <span>page ${brief.page}</span>
-      <span>${brief.skillFocusLabel}</span>
-      <span>${brief.creationTypeLabel}</span>
-      <span>${typeCopy[brief.type]}</span>
-      <span>${difficultyCopy[brief.difficulty]}</span>
-      <span>${brief.time}</span>
-      <span>${brief.tool}</span>
+      <span class="brief-chip brief-chip-page">page ${brief.page}</span>
+      <span class="brief-chip brief-category brief-category-${categorySlug}">${brief.categoryLabel}</span>
+      <span class="brief-chip brief-chip-difficulty">${difficultyCopy[brief.difficulty]}</span>
+      <span class="brief-chip brief-chip-focus">${brief.focus}</span>
     </div>
     <div class="section"><small>Objective</small><p>${brief.objective}</p></div>
     <div class="section"><small>What to Analyze</small><p>${brief.analyze}</p></div>
@@ -999,7 +1155,6 @@ function renderMission(brief) {
     makeTooltipTag(brief.skillFocusLabel, "goal"),
     makeTooltipTag(brief.creationTypeLabel, "type"),
     makeTooltipTag(difficultyCopy[brief.difficulty]),
-    makeTooltipTag(brief.time),
     makeTooltipTag(brief.tool),
     makeTooltipTag(getLibraryGroupLabel(brief.book), brief.book.libraryType === "study" ? "style" : "world", getTagExample(brief.book.libraryType === "study" ? "book of study" : "artbook"))
   ].join("");
@@ -1488,7 +1643,7 @@ missionCard.addEventListener("click", async event => {
   if (urlBtn) {
     const missionBook = currentMission?.book;
     if (!missionBook) return;
-    const currentManualCover = readManualCovers()[missionBook.id] || "";
+    const currentManualCover = getManualCover(missionBook) || "";
     const suggestedUrl = currentManualCover && !currentManualCover.startsWith("data:") ? currentManualCover : (missionBook.cover && !String(missionBook.cover).startsWith("data:") ? missionBook.cover : "");
     const pastedUrl = window.prompt("Paste the direct image URL for this book cover.", suggestedUrl);
     if (pastedUrl === null) return;
@@ -1522,7 +1677,7 @@ selectedBookCard.addEventListener("click", async event => {
     return;
   }
   if (coverUrlBtn) {
-    const currentManualCover = readManualCovers()[selectedBook?.id] || "";
+    const currentManualCover = selectedBook ? getManualCover(selectedBook) : "";
     const suggestedUrl = currentManualCover && !currentManualCover.startsWith("data:") ? currentManualCover : (selectedBook?.cover && !String(selectedBook.cover).startsWith("data:") ? selectedBook.cover : "");
     const pastedUrl = window.prompt("Paste the direct image URL for this book cover.", suggestedUrl);
     if (pastedUrl === null) return;
@@ -1622,12 +1777,17 @@ function runTests() {
   console.assert(seededBookCount > 0, "seeded library should load from books.json");
   console.assert(books.every(book => book.libraryType === "study" || book.libraryType === "artbook"), "each book should include a valid libraryType");
   console.assert(Object.keys(skillTemplates).length === 8, "skill templates should match the new skill focus set");
+  console.assert(Array.isArray(practicePool.objectives) && practicePool.objectives.length > 0, "practice pool should load objective entries");
+  console.assert(Array.isArray(practicePool.whatToAnalyze) && practicePool.whatToAnalyze.length > 0, "practice pool should load analysis entries");
+  console.assert(Array.isArray(practicePool.tasks) && practicePool.tasks.length > 0, "practice pool should load task entries");
+  console.assert(Array.isArray(practicePool.focuses) && practicePool.focuses.length > 0, "practice pool should load focus entries");
 }
 async function initApp() {
   try {
     populateSkillFocusSelect();
     populateCreationTypeSelect();
     initPracticeOptionChips();
+    await loadPracticePool();
     await loadBooks();
     initBookTags();
     renderLibrary();
@@ -1645,6 +1805,16 @@ async function initApp() {
 }
 initApp();
 window.saveCurrentBrief = saveCurrentBrief;
+
+
+
+
+
+
+
+
+
+
 
 
 

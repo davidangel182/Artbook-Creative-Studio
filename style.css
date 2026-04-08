@@ -1,4 +1,4 @@
-:root {
+﻿:root {
       --bg: #0b0b1a;
       --panel: rgba(255,255,255,0.06);
       --panel-2: rgba(255,255,255,0.08);
@@ -951,6 +951,96 @@
   background: rgba(255,122,198,0.12);
   border-color: rgba(255,122,198,0.22);
 }
+.brief-meta .brief-category {
+  color: var(--text);
+  font-weight: 600;
+}
+.brief-meta .brief-category-composition {
+  color: #ffd86b;
+  border-color: rgba(255,216,107,0.3);
+  background: rgba(255,216,107,0.1);
+}
+.brief-meta .brief-category-color {
+  color: #7dd6ff;
+  border-color: rgba(125,214,255,0.3);
+  background: rgba(125,214,255,0.1);
+}
+.brief-meta .brief-category-character {
+  color: #ff9acb;
+  border-color: rgba(255,154,203,0.3);
+  background: rgba(255,154,203,0.1);
+}
+.brief-meta .brief-category-ideation {
+  color: #b8f28d;
+  border-color: rgba(184,242,141,0.3);
+  background: rgba(184,242,141,0.1);
+}
+.brief-meta .brief-category-materials {
+  color: #ffb37d;
+  border-color: rgba(255,179,125,0.3);
+  background: rgba(255,179,125,0.1);
+}
+.brief-meta .brief-category-sketch {
+  color: #b8f28d;
+  border-color: rgba(184,242,141,0.3);
+  background: rgba(184,242,141,0.1);
+}
+.brief-meta .brief-category-ui,
+.brief-meta .brief-category-icons {
+  color: #8fb2ff;
+  border-color: rgba(143,178,255,0.3);
+  background: rgba(143,178,255,0.1);
+}
+.brief-meta .brief-category-render {
+  color: #ffb37d;
+  border-color: rgba(255,179,125,0.3);
+  background: rgba(255,179,125,0.1);
+}
+.brief-meta .brief-category-storytelling {
+  color: #d6a0ff;
+  border-color: rgba(214,160,255,0.3);
+  background: rgba(214,160,255,0.1);
+}
+.brief-meta .brief-category-lighting {
+  color: #ffe88d;
+  border-color: rgba(255,232,141,0.3);
+  background: rgba(255,232,141,0.1);
+}
+.brief-meta .brief-category-study {
+  color: #8ff0c8;
+  border-color: rgba(143,240,200,0.3);
+  background: rgba(143,240,200,0.1);
+}
+.brief-meta .brief-category-props {
+  color: #ffcf9a;
+  border-color: rgba(255,207,154,0.3);
+  background: rgba(255,207,154,0.1);
+}
+.brief-meta .brief-category-style {
+  color: #c9a6ff;
+  border-color: rgba(201,166,255,0.3);
+  background: rgba(201,166,255,0.1);
+}
+.brief-meta .brief-chip-page {
+  color: #b8c7ff;
+  border-color: rgba(184,199,255,0.3);
+  background: rgba(184,199,255,0.1);
+}
+.brief-meta .brief-chip-difficulty {
+  color: #ffb3d1;
+  border-color: rgba(255,179,209,0.3);
+  background: rgba(255,179,209,0.1);
+}
+.brief-meta .brief-chip-duration {
+  color: #ffcf9a;
+  border-color: rgba(255,207,154,0.3);
+  background: rgba(255,207,154,0.1);
+}
+.brief-meta .brief-chip-focus {
+  color: #8ff0c8;
+  border-color: rgba(143,240,200,0.3);
+  background: rgba(143,240,200,0.1);
+}
 .brief-actions {
   margin-top: 16px;
 }
@@ -1283,3 +1373,4 @@
   border-color: rgba(167,139,250,0.24);
   background: rgba(255,255,255,0.065);
 }
+
